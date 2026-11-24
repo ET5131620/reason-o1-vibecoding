@@ -1,0 +1,3006 @@
+{
+ "version": 4,
+ "note": "Kits curados. 'r' é owner/repo no GitHub (verificado) ou um URL completo. Estrelas, licença e avatar são lidos ao vivo do GitHub. Cada kit tem 7 itens: os 3 marcados com 'e' são o conjunto Essencial (principiante); os 7 são o Completo (expert). 'palavras' classifica as skills que o utilizador já tem. 'c' lista pares curados [ferramenta, porquê] que combinam com o item.",
+ "cookbook": {
+  "r": "anthropics/claude-cookbooks",
+  "url": "https://github.com/anthropics/claude-cookbooks",
+  "clone": "git clone --depth 1 https://github.com/anthropics/claude-cookbooks.git"
+ },
+ "kits": [
+  {
+   "id": "agente",
+   "nome": "Agentes e MCP",
+   "icon": "agent",
+   "cor": "#38e1ff",
+   "resumo": "Um agente é um LLM com uma missão, ferramentas e limites. Recebe um pedido, decide passos, usa ferramentas (MCP, APIs, ficheiros) e responde.",
+   "porque": "Sem ferramentas o agente só fala. Com MCP e APIs ele lê, pesquisa e age — mas cada ferramenta é uma permissão, por isso dá-se só o necessário.",
+   "missao": "Exemplo: um agente que lê a caixa de suporte, classifica pedidos e propõe respostas para aprovares.",
+   "passos": [
+    "Escreve a missão numa frase: para quem, o quê, o que nunca faz.",
+    "Lista as entradas (pedido, ficheiros, emails) e as saídas (resposta, ficheiro, rascunho).",
+    "Escolhe o LLM: local (Ollama) para dados sensíveis, API para qualidade máxima.",
+    "Dá só as ferramentas necessárias: cada MCP é uma porta aberta.",
+    "Define a linha de aprovação: enviar, apagar, pagar e publicar pedem sempre o teu sim.",
+    "Testa com 5 casos reais e um caso maldoso (prompt injection).",
+    "Regista custos e erros; só depois automatiza."
+   ],
+   "apis": [
+    {
+     "n": "Ollama (local)",
+     "p": "Grátis, sem rede, sem chave"
+    },
+    {
+     "n": "OpenRouter — modelos :free",
+     "p": "Camada grátis com limites; confirmar no site"
+    },
+    {
+     "n": "Google AI Studio (Gemini)",
+     "p": "Camada grátis com limites; confirmar no site"
+    },
+    {
+     "n": "public-apis",
+     "r": "public-apis/public-apis",
+     "p": "Lista enorme de APIs públicas grátis para ligar ao agente"
+    }
+   ],
+   "palavras": [
+    "agent",
+    "agente",
+    "mcp",
+    "subagent",
+    "orchestr",
+    "harness",
+    "sdk",
+    "swarm"
+   ],
+   "cookbook": [
+    "claude_agent_sdk",
+    "patterns/agents",
+    "tool_use",
+    "managed_agents"
+   ],
+   "itens": [
+    {
+     "t": "skill",
+     "n": "Anthropic Skills (skill-creator, mcp-builder)",
+     "r": "anthropics/skills",
+     "p": "Skills oficiais para criar skills e servidores MCP",
+     "v": "Método oficial: o agente aprende a fazer as próprias ferramentas",
+     "e": true,
+     "c": [
+      [
+       "FastMCP",
+       "o mcp-builder desenha o servidor, o FastMCP escreve-o em poucas linhas"
+      ],
+      [
+       "Claude Agent SDK (Python)",
+       "as skills que crias passam a correr dentro dos teus agentes"
+      ]
+     ]
+    },
+    {
+     "t": "mcp",
+     "n": "Servidores MCP de referência",
+     "r": "modelcontextprotocol/servers",
+     "p": "Ficheiros, git, memória, fetch: os MCP base",
+     "v": "Ligação padrão que funciona no Claude Code, no Codex e no Cursor",
+     "e": true,
+     "c": [
+      [
+       "Anthropic Skills (skill-creator, mcp-builder)",
+       "partes de um MCP que funciona para criar o teu"
+      ],
+      [
+       "Context7",
+       "documentação atualizada ao lado dos ficheiros e do git"
+      ]
+     ]
+    },
+    {
+     "t": "sdk",
+     "n": "Claude Agent SDK (Python)",
+     "r": "anthropics/claude-agent-sdk-python",
+     "p": "O motor do Claude Code para os teus agentes",
+     "v": "Ferramentas, hooks e permissões já resolvidos",
+     "e": true,
+     "c": [
+      [
+       "Servidores MCP de referência",
+       "dá ferramentas prontas (ficheiros, git, fetch) ao agente"
+      ],
+      [
+       "Superpowers",
+       "o agente segue um método de plano, testes e revisão"
+      ]
+     ]
+    },
+    {
+     "t": "sdk",
+     "n": "CrewAI",
+     "r": "crewAIInc/crewAI",
+     "p": "Equipas de agentes com papéis",
+     "v": "Rápido de montar um orquestrador com vários papéis",
+     "e": false,
+     "c": [
+      [
+       "n8n",
+       "o n8n dispara a equipa de agentes a partir de eventos"
+      ],
+      [
+       "LangGraph",
+       "quando o fluxo precisa de ciclos e estado fino"
+      ]
+     ]
+    },
+    {
+     "t": "sdk",
+     "n": "LangGraph",
+     "r": "langchain-ai/langgraph",
+     "p": "Agentes como grafo de passos com estado",
+     "v": "Fluxos longos com retoma e aprovação humana",
+     "e": false,
+     "c": [
+      [
+       "Claude Agent SDK (Python)",
+       "cada nó do grafo pode ser um agente Claude"
+      ],
+      [
+       "Langflow",
+       "desenhas o grafo visualmente antes de o codificar"
+      ]
+     ]
+    },
+    {
+     "t": "sdk",
+     "n": "OpenAI Agents SDK",
+     "r": "openai/openai-agents-python",
+     "p": "Agentes com handoffs e guardrails",
+     "v": "Bom para comparar abordagens e modelos",
+     "e": false,
+     "c": [
+      [
+       "Servidores MCP de referência",
+       "liga as mesmas ferramentas MCP aos agentes OpenAI"
+      ],
+      [
+       "OmniRoute",
+       "troca de modelo sem mexer no código"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "FastMCP",
+     "r": "PrefectHQ/fastmcp",
+     "p": "Criar um servidor MCP em Python em minutos",
+     "v": "Uma função vira uma ferramenta do agente",
+     "e": false,
+     "c": [
+      [
+       "MCP Python SDK",
+       "o SDK oficial por baixo; o FastMCP é o atalho"
+      ],
+      [
+       "Anthropic Skills (skill-creator, mcp-builder)",
+       "o mcp-builder ensina o agente a escrever servidores bons"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "web",
+   "nome": "Web design UI/UX",
+   "icon": "globe",
+   "cor": "#4aa8ff",
+   "resumo": "Interfaces bonitas e usáveis: estilo, UX, acessibilidade e revisão no browser.",
+   "porque": "As skills de design dão ao agente gosto e regras; o browser real confirma o resultado.",
+   "missao": "Exemplo: uma landing page com identidade própria, testada no telemóvel.",
+   "passos": [
+    "Escolhe Astro para conteúdo, Next.js para app.",
+    "Define páginas, textos e imagens antes do design.",
+    "Constrói e mede com Lighthouse a cada secção.",
+    "Testa formulários e links com Playwright.",
+    "Publica num serviço com HTTPS e domínio próprio."
+   ],
+   "apis": [],
+   "palavras": [
+    "web design",
+    "ui",
+    "ux",
+    "landing",
+    "website",
+    "design system",
+    "figma",
+    "web"
+   ],
+   "cookbook": [
+    "multimodal"
+   ],
+   "itens": [
+    {
+     "t": "skill",
+     "n": "Anthropic Skills (frontend-design)",
+     "r": "anthropics/skills",
+     "p": "Direção visual forte para interfaces",
+     "v": "Oficial, leve, funciona em qualquer projeto",
+     "e": true,
+     "c": [
+      [
+       "UI UX Pro Max",
+       "o frontend-design dá a atitude; o Pro Max dá paletas e regras"
+      ],
+      [
+       "Playwright MCP",
+       "o agente vê a página que fez e corrige"
+      ]
+     ]
+    },
+    {
+     "t": "skill",
+     "n": "UI UX Pro Max",
+     "r": "nextlevelbuilder/ui-ux-pro-max-skill",
+     "p": "Base de estilos, paletas, fontes e regras de UX",
+     "v": "O agente escolhe um estilo coerente em vez de inventar",
+     "e": true,
+     "c": [
+      [
+       "shadcn/ui",
+       "regras de design aplicadas a componentes prontos"
+      ],
+      [
+       "Impeccable",
+       "o Impeccable limpa os vícios de IA no fim"
+      ]
+     ]
+    },
+    {
+     "t": "skill",
+     "n": "Impeccable",
+     "r": "pbakaus/impeccable",
+     "p": "Comandos de crítica e polimento de design",
+     "v": "Apanha os defeitos que fazem parecer 'feito por IA'",
+     "e": true,
+     "c": [
+      [
+       "Anthropic Skills (frontend-design)",
+       "um cria, o outro tira o ar de template"
+      ],
+      [
+       "gstack (design-review, design-html)",
+       "revisão visual com capturas reais"
+      ]
+     ]
+    },
+    {
+     "t": "skill",
+     "n": "gstack (design-review, design-html)",
+     "r": "garrytan/gstack",
+     "p": "Revisão visual e geração de HTML com browser real",
+     "v": "Testa a página no browser e corrige",
+     "e": false,
+     "c": [
+      [
+       "Playwright MCP",
+       "o design-review precisa de um browser para capturar"
+      ],
+      [
+       "UI UX Pro Max",
+       "as correções seguem um sistema de design"
+      ]
+     ]
+    },
+    {
+     "t": "skill",
+     "n": "Taste Skill",
+     "r": "Leonxlnx/taste-skill",
+     "p": "Regras de gosto visual e tipografia",
+     "v": "Mais identidade, menos template",
+     "e": false,
+     "c": [
+      [
+       "Motion",
+       "gosto visual mais movimento com propósito"
+      ],
+      [
+       "Anthropic Skills (frontend-design)",
+       "evita o visual genérico de IA desde o início"
+      ]
+     ]
+    },
+    {
+     "t": "skill",
+     "n": "Vercel Agent Skills (web-design-guidelines)",
+     "r": "vercel-labs/agent-skills",
+     "p": "Regras de acessibilidade e boas práticas web",
+     "v": "Checklist que o agente aplica sozinho",
+     "e": false,
+     "c": [
+      [
+       "Lighthouse",
+       "as regras dizem o que fazer; o Lighthouse mede se ficou"
+      ],
+      [
+       "Playwright MCP",
+       "testa acessibilidade e teclado na página real"
+      ]
+     ]
+    },
+    {
+     "t": "mcp",
+     "n": "Figma Context MCP",
+     "r": "GLips/Figma-Context-MCP",
+     "p": "O agente lê o teu ficheiro do Figma",
+     "v": "Do design ao código sem descrever tudo à mão",
+     "e": false,
+     "c": [
+      [
+       "shadcn/ui",
+       "do desenho no Figma para componentes reais"
+      ],
+      [
+       "21st.dev Magic MCP",
+       "componentes prontos para preencher o que falta no Figma"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "frontend",
+   "nome": "Front-end",
+   "icon": "layout",
+   "cor": "#7c6bff",
+   "resumo": "Interfaces modernas com componentes prontos, documentação sempre atual e testes no browser.",
+   "porque": "O agente erra quando usa documentação velha. Com o Context7 lê a versão certa; com o Playwright vê o que construiu.",
+   "missao": "Exemplo: uma landing page com formulário, modo escuro e testes automáticos.",
+   "passos": [
+    "Desenha o fluxo principal em 5 ecrãs antes de escrever código.",
+    "Cria o projeto com Vite e adiciona o shadcn/ui.",
+    "Liga o Context7 para o agente usar a documentação certa.",
+    "Constrói ecrã a ecrã; testa cada um com o Playwright MCP.",
+    "Verifica teclado, contraste e mobile antes de dar por feito."
+   ],
+   "apis": [],
+   "palavras": [
+    "react",
+    "frontend",
+    "front-end",
+    "component",
+    "css",
+    "tailwind",
+    "html",
+    "browser"
+   ],
+   "cookbook": [],
+   "itens": [
+    {
+     "t": "lib",
+     "n": "shadcn/ui",
+     "r": "shadcn-ui/ui",
+     "p": "Componentes acessíveis que copias para o projeto",
+     "v": "O código é teu: o agente edita sem lutar com uma biblioteca",
+     "e": true,
+     "c": [
+      [
+       "Tailwind CSS",
+       "o shadcn é feito em Tailwind: andam sempre juntos"
+      ],
+      [
+       "21st.dev Magic MCP",
+       "mais componentes no mesmo estilo, gerados por pedido"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "Tailwind CSS",
+     "r": "tailwindlabs/tailwindcss",
+     "p": "Estilos com classes utilitárias",
+     "v": "O agente escreve estilos previsíveis e fáceis de rever",
+     "e": true,
+     "c": [
+      [
+       "shadcn/ui",
+       "componentes acessíveis já estilizados"
+      ],
+      [
+       "UI UX Pro Max",
+       "tokens e escalas coerentes para o Tailwind"
+      ]
+     ]
+    },
+    {
+     "t": "mcp",
+     "n": "Playwright MCP",
+     "r": "microsoft/playwright-mcp",
+     "p": "O agente abre o browser e testa a página",
+     "v": "Vê o resultado em vez de adivinhar",
+     "e": true,
+     "c": [
+      [
+       "Chrome DevTools MCP",
+       "Playwright navega; DevTools mede consola e performance"
+      ],
+      [
+       "gstack (design-review, design-html)",
+       "transforma capturas em revisão de design"
+      ]
+     ]
+    },
+    {
+     "t": "mcp",
+     "n": "Context7",
+     "r": "upstash/context7",
+     "p": "Documentação atualizada de cada biblioteca",
+     "v": "Menos código com APIs antigas",
+     "e": false,
+     "c": [
+      [
+       "Claude Agent SDK (Python)",
+       "o agente consulta a documentação certa da versão em uso"
+      ],
+      [
+       "Karpathy guidelines",
+       "menos código inventado, menos tokens gastos"
+      ]
+     ]
+    },
+    {
+     "t": "mcp",
+     "n": "Chrome DevTools MCP",
+     "r": "ChromeDevTools/chrome-devtools-mcp",
+     "p": "Consola, rede e desempenho no agente",
+     "v": "Diagnóstico de erros reais do browser",
+     "e": false,
+     "c": [
+      [
+       "Playwright MCP",
+       "um conduz, o outro diagnostica"
+      ],
+      [
+       "Lighthouse",
+       "auditoria de performance repetível"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "Motion",
+     "r": "motiondivision/motion",
+     "p": "Animações de interface",
+     "v": "Movimento com propósito e reduced-motion",
+     "e": false,
+     "c": [
+      [
+       "shadcn/ui",
+       "animações suaves em componentes prontos"
+      ],
+      [
+       "Taste Skill",
+       "movimento com propósito, não decoração"
+      ]
+     ]
+    },
+    {
+     "t": "mcp",
+     "n": "21st.dev Magic MCP",
+     "r": "21st-dev/magic-mcp",
+     "p": "Gera componentes de UI a partir de texto",
+     "v": "Protótipos rápidos de secções",
+     "e": false,
+     "c": [
+      [
+       "shadcn/ui",
+       "gera componentes compatíveis com o teu design"
+      ],
+      [
+       "Tailwind CSS",
+       "o resultado vem em Tailwind, pronto a usar"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "backend",
+   "nome": "Back-end",
+   "icon": "server",
+   "cor": "#3ddc97",
+   "resumo": "Base de dados, autenticação, APIs e ficheiros — o motor por trás da interface.",
+   "porque": "O back-end guarda dados de pessoas: tem de ter permissões certas desde o início. O agente ajuda a escrever, mas as regras de acesso revês tu.",
+   "missao": "Exemplo: uma API de reservas com login, base de dados e emails de confirmação.",
+   "passos": [
+    "Desenha o modelo de dados: entidades, relações, quem vê o quê.",
+    "Escreve as regras de acesso antes das rotas.",
+    "Gera as rotas com testes para os casos de erro.",
+    "Guarda segredos em variáveis de ambiente, nunca no código.",
+    "Corre o kit de segurança antes de publicar."
+   ],
+   "apis": [],
+   "palavras": [
+    "backend",
+    "api",
+    "database",
+    "supabase",
+    "sql",
+    "postgres",
+    "server",
+    "deploy"
+   ],
+   "cookbook": [],
+   "itens": [
+    {
+     "t": "app",
+     "n": "Supabase",
+     "r": "supabase/supabase",
+     "p": "Base de dados, autenticação e ficheiros",
+     "v": "Um back-end completo com camada grátis",
+     "e": true,
+     "c": [
+      [
+       "Supabase MCP",
+       "o agente cria tabelas e políticas por ti, com o teu sim"
+      ],
+      [
+       "Drizzle ORM",
+       "tipos seguros por cima do Postgres do Supabase"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "FastAPI",
+     "r": "fastapi/fastapi",
+     "p": "APIs em Python, tipadas e documentadas",
+     "v": "Documentação automática da API",
+     "e": true,
+     "c": [
+      [
+       "Supabase",
+       "API em Python com base de dados e autenticação prontas"
+      ],
+      [
+       "Ruff",
+       "código Python limpo e rápido de rever"
+      ]
+     ]
+    },
+    {
+     "t": "mcp",
+     "n": "GitHub MCP",
+     "r": "github/github-mcp-server",
+     "p": "Issues, PRs e código no agente",
+     "v": "O agente trabalha no repositório com histórico",
+     "e": true,
+     "c": [
+      [
+       "Claude Code Action",
+       "o agente abre PRs e responde a issues sozinho, com regras"
+      ],
+      [
+       "Gitleaks",
+       "nada de segredos nos commits que o agente faz"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "Prisma",
+     "r": "prisma/orm",
+     "p": "Base de dados com tipos",
+     "v": "Migrações e tipos gerados",
+     "e": false,
+     "c": [
+      [
+       "Supabase",
+       "Postgres gerido com esquema em código"
+      ],
+      [
+       "Hono",
+       "API leve com tipos de ponta a ponta"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "Drizzle ORM",
+     "r": "drizzle-team/drizzle-orm",
+     "p": "SQL tipado e leve",
+     "v": "Perto do SQL, pouco peso",
+     "e": false,
+     "c": [
+      [
+       "Hono",
+       "a dupla mais leve para APIs em TypeScript"
+      ],
+      [
+       "Supabase",
+       "esquema em TypeScript sobre Postgres gerido"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "Hono",
+     "r": "honojs/hono",
+     "p": "APIs leves em TypeScript",
+     "v": "Corre em Node, Bun e edge",
+     "e": false,
+     "c": [
+      [
+       "Drizzle ORM",
+       "base de dados tipada numa API de poucos KB"
+      ],
+      [
+       "Polar",
+       "pagamentos numa API mínima"
+      ]
+     ]
+    },
+    {
+     "t": "mcp",
+     "n": "Supabase MCP",
+     "r": "supabase/mcp",
+     "p": "O agente gere tabelas e funções",
+     "v": "Esquema e políticas sem sair do chat",
+     "e": false,
+     "c": [
+      [
+       "Supabase",
+       "o MCP só faz sentido com um projeto Supabase"
+      ],
+      [
+       "GitHub MCP",
+       "migrações versionadas no repositório"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "design",
+   "nome": "Design gráfico e canvas",
+   "icon": "palette",
+   "cor": "#ffb547",
+   "resumo": "Cartazes, marca, esquemas e canvas, com composição a sério.",
+   "porque": "As skills de canvas e marca dão hierarquia e tipografia; os quadros livres servem para pensar e mostrar.",
+   "missao": "Exemplo: um cartaz de evento e 3 variações para redes sociais.",
+   "passos": [
+    "Escreve o conceito numa frase e junta 3 referências reais.",
+    "Fixa paleta, tipografia e grelha antes de gerar seja o que for.",
+    "Gera variações; escolhe pela hierarquia, não pelo efeito.",
+    "Finaliza em vetor (Penpot) e exporta nos tamanhos certos."
+   ],
+   "apis": [
+    {
+     "n": "Modelos locais no ComfyUI",
+     "p": "Grátis; precisa de GPU para ser rápido"
+    }
+   ],
+   "palavras": [
+    "canvas",
+    "poster",
+    "flyer",
+    "brand",
+    "graphic",
+    "logo",
+    "theme",
+    "cartaz",
+    "design"
+   ],
+   "cookbook": [],
+   "itens": [
+    {
+     "t": "skill",
+     "n": "Anthropic Skills (canvas-design, brand, theme)",
+     "r": "anthropics/skills",
+     "p": "Cartazes, marca e temas com regras de composição",
+     "v": "Peças estáticas com hierarquia, sem template",
+     "e": true,
+     "c": [
+      [
+       "Excalidraw",
+       "esboça à mão, refina com a skill"
+      ],
+      [
+       "Penpot",
+       "do conceito ao ficheiro de design editável"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Excalidraw",
+     "r": "excalidraw/excalidraw",
+     "p": "Quadro branco e esquemas",
+     "v": "Ideias e diagramas em segundos",
+     "e": true,
+     "c": [
+      [
+       "tldraw",
+       "quando precisas do quadro dentro da tua app"
+      ],
+      [
+       "Anthropic Skills (canvas-design, brand, theme)",
+       "o esboço vira peça final"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Penpot",
+     "r": "penpot/penpot",
+     "p": "Design e protótipos open source",
+     "v": "Alternativa livre ao Figma",
+     "e": true,
+     "c": [
+      [
+       "Figma Context MCP",
+       "o mesmo fluxo de design para código, em open source"
+      ],
+      [
+       "shadcn/ui",
+       "componentes reais a partir do desenho"
+      ]
+     ]
+    },
+    {
+     "t": "skill",
+     "n": "Taste Skill",
+     "r": "Leonxlnx/taste-skill",
+     "p": "Regras de gosto visual",
+     "v": "Composição e tipografia mais fortes",
+     "e": false,
+     "c": [
+      [
+       "Motion",
+       "gosto visual mais movimento com propósito"
+      ],
+      [
+       "Anthropic Skills (frontend-design)",
+       "evita o visual genérico de IA desde o início"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "tldraw",
+     "r": "tldraw/tldraw",
+     "p": "Canvas infinito para apps",
+     "v": "Põe um quadro dentro do teu programa",
+     "e": false,
+     "c": [
+      [
+       "Excalidraw",
+       "esboço rápido antes de construir o canvas"
+      ],
+      [
+       "Claude Agent SDK (Python)",
+       "um agente que desenha no teu canvas"
+      ]
+     ]
+    },
+    {
+     "t": "skill",
+     "n": "Knowledge Work Plugins (design)",
+     "r": "anthropics/knowledge-work-plugins",
+     "p": "Plugins oficiais: crítica, sistema de design",
+     "v": "Revisão de design com método",
+     "e": false,
+     "c": [
+      [
+       "Anthropic Skills (canvas-design, brand, theme)",
+       "crítica e criação no mesmo fluxo"
+      ],
+      [
+       "Figma Context MCP",
+       "revisões ligadas ao ficheiro real"
+      ]
+     ]
+    },
+    {
+     "t": "mcp",
+     "n": "Figma Context MCP",
+     "r": "GLips/Figma-Context-MCP",
+     "p": "Ler o Figma no agente",
+     "v": "Usa a tua marca real",
+     "e": false,
+     "c": [
+      [
+       "shadcn/ui",
+       "do desenho no Figma para componentes reais"
+      ],
+      [
+       "21st.dev Magic MCP",
+       "componentes prontos para preencher o que falta no Figma"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "video",
+   "nome": "Vídeo e motion",
+   "icon": "video",
+   "cor": "#ff5fa2",
+   "resumo": "Vídeo com código e IA: cortar, legendar, animar e renderizar sem abrir um editor pesado.",
+   "porque": "O agente escreve a composição em código (React/TS), o FFmpeg trata do resto e o Whisper legenda. Fica repetível e versionado.",
+   "missao": "Exemplo: transformar um vídeo de 10 min em 5 clipes verticais com legendas e título animado.",
+   "passos": [
+    "Define o formato final: 9:16, 16:9 ou 1:1, duração e público.",
+    "Transcreve com faster-whisper e marca os melhores momentos.",
+    "Corta com FFmpeg a partir dos tempos marcados.",
+    "Cria a composição no Remotion: título, legendas, marca.",
+    "Renderiza um clipe de teste e revê som, legibilidade e ritmo.",
+    "Só depois renderiza o lote."
+   ],
+   "apis": [
+    {
+     "n": "Whisper local",
+     "p": "Legendas grátis, sem enviar o vídeo"
+    },
+    {
+     "n": "Pexels / Pixabay",
+     "p": "Imagens e vídeos de stock com API grátis; confirmar licença"
+    }
+   ],
+   "palavras": [
+    "video",
+    "vídeo",
+    "remotion",
+    "motion",
+    "animation",
+    "synfig",
+    "ffmpeg",
+    "audio",
+    "voice"
+   ],
+   "cookbook": [],
+   "itens": [
+    {
+     "t": "lib",
+     "n": "Remotion",
+     "r": "remotion-dev/remotion",
+     "p": "Vídeo escrito em React",
+     "v": "Repetível e versionado: o agente edita o vídeo como código",
+     "e": true,
+     "c": [
+      [
+       "Remotion Skills",
+       "o agente escreve vídeos Remotion sem erros comuns"
+      ],
+      [
+       "FFmpeg",
+       "converte, comprime e junta os vídeos renderizados"
+      ]
+     ]
+    },
+    {
+     "t": "cli",
+     "n": "FFmpeg",
+     "r": "FFmpeg/FFmpeg",
+     "p": "Cortar, converter e juntar",
+     "v": "A base de qualquer pipeline de vídeo",
+     "e": true,
+     "c": [
+      [
+       "faster-whisper",
+       "legendas automáticas do áudio"
+      ],
+      [
+       "Remotion",
+       "o Remotion renderiza, o FFmpeg finaliza"
+      ]
+     ]
+    },
+    {
+     "t": "skill",
+     "n": "Remotion Skills",
+     "r": "remotion-dev/skills",
+     "p": "Skills oficiais do Remotion para agentes",
+     "v": "O agente conhece as regras do Remotion",
+     "e": true,
+     "c": [
+      [
+       "Remotion",
+       "as regras para o motor de vídeo"
+      ],
+      [
+       "Motion",
+       "a mesma linguagem de animação na web e no vídeo"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "HyperFrames",
+     "r": "heygen-com/hyperframes",
+     "p": "Vídeo a partir de HTML e CSS",
+     "v": "Usa o que já sabes de web para animar",
+     "e": false,
+     "c": [
+      [
+       "Remotion",
+       "HTML para vídeo quando já tens a página feita"
+      ],
+      [
+       "FFmpeg",
+       "pós-produção e formatos para redes"
+      ]
+     ]
+    },
+    {
+     "t": "llm",
+     "n": "faster-whisper",
+     "r": "SYSTRAN/faster-whisper",
+     "p": "Legendas locais e rápidas",
+     "v": "Grátis e sem enviar o vídeo",
+     "e": false,
+     "c": [
+      [
+       "FFmpeg",
+       "extrai o áudio e queima as legendas"
+      ],
+      [
+       "Remotion",
+       "legendas animadas a partir da transcrição"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "Motion Canvas",
+     "r": "motion-canvas/motion-canvas",
+     "p": "Animação explicativa por código",
+     "v": "Ótimo para vídeos didáticos",
+     "e": false,
+     "c": [
+      [
+       "FFmpeg",
+       "exporta e junta as cenas"
+      ],
+      [
+       "Remotion",
+       "Remotion para produção, Motion Canvas para explicativos"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "Revideo",
+     "r": "midrender/revideo",
+     "p": "Render de vídeo por API",
+     "v": "Vídeos em série a partir de dados",
+     "e": false,
+     "c": [
+      [
+       "FFmpeg",
+       "pipeline de vídeo totalmente em código"
+      ],
+      [
+       "faster-whisper",
+       "vídeos com legendas geradas"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "imagem",
+   "nome": "Imagem e render",
+   "icon": "image",
+   "cor": "#f78bff",
+   "resumo": "Gerar, limpar e aumentar imagens com IA, local e grátis sempre que possível.",
+   "porque": "Imagens de qualidade sem pagar por cada geração: o ComfyUI corre no teu PC e as ferramentas de limpeza tratam do resto.",
+   "missao": "Exemplo: 20 imagens de produto com fundo limpo e resolução 4K.",
+   "passos": [
+    "Define o estilo com 3 imagens de referência.",
+    "Gera no ComfyUI ou no Fooocus.",
+    "Remove fundos com rembg.",
+    "Aumenta a resolução com o Upscayl.",
+    "Revê cor e coerência entre todas.",
+    "Exporta nos tamanhos finais."
+   ],
+   "apis": [
+    {
+     "n": "Modelos locais",
+     "p": "Grátis; precisa de GPU para ser rápido"
+    }
+   ],
+   "palavras": [
+    "image",
+    "imagem",
+    "render",
+    "photo",
+    "foto",
+    "comfy",
+    "upscale",
+    "gpt-image"
+   ],
+   "cookbook": [
+    "multimodal",
+    "images"
+   ],
+   "itens": [
+    {
+     "t": "app",
+     "n": "ComfyUI",
+     "r": "Comfy-Org/ComfyUI",
+     "p": "Geração de imagem por nós, local",
+     "v": "Controlo total e modelos grátis no teu PC",
+     "e": true,
+     "c": [
+      [
+       "FLUX",
+       "o modelo de imagem mais forte a correr no ComfyUI"
+      ],
+      [
+       "Upscayl",
+       "aumenta a resolução no fim"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Upscayl",
+     "r": "upscayl/upscayl",
+     "p": "Aumentar a resolução de imagens",
+     "v": "Um clique, local e grátis",
+     "e": true,
+     "c": [
+      [
+       "ComfyUI",
+       "gera e depois amplia"
+      ],
+      [
+       "rembg",
+       "recorta e amplia produtos e retratos"
+      ]
+     ]
+    },
+    {
+     "t": "cli",
+     "n": "rembg",
+     "r": "danielgatis/rembg",
+     "p": "Remover fundos",
+     "v": "Recorte limpo em lote",
+     "e": true,
+     "c": [
+      [
+       "Upscayl",
+       "recorte limpo em alta resolução"
+      ],
+      [
+       "ComfyUI",
+       "fundo novo gerado depois do recorte"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Stable Diffusion WebUI",
+     "r": "AUTOMATIC1111/stable-diffusion-webui",
+     "p": "Interface clássica para gerar imagens",
+     "v": "Enorme ecossistema de extensões",
+     "e": false,
+     "c": [
+      [
+       "Upscayl",
+       "amplia os resultados"
+      ],
+      [
+       "ComfyUI",
+       "passa para nós quando o fluxo cresce"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Fooocus",
+     "r": "lllyasviel/Fooocus",
+     "p": "Gerar imagens com poucas opções",
+     "v": "O mais simples para começar",
+     "e": false,
+     "c": [
+      [
+       "Upscayl",
+       "imagens simples, depois ampliadas"
+      ],
+      [
+       "rembg",
+       "recorte para usar em composições"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "InvokeAI",
+     "r": "invoke-ai/InvokeAI",
+     "p": "Estúdio de imagem com camadas",
+     "v": "Fluxo profissional de edição",
+     "e": false,
+     "c": [
+      [
+       "FLUX",
+       "modelo forte numa interface de estúdio"
+      ],
+      [
+       "Upscayl",
+       "acabamento em alta resolução"
+      ]
+     ]
+    },
+    {
+     "t": "llm",
+     "n": "FLUX",
+     "r": "black-forest-labs/flux",
+     "p": "Modelo de imagem de alta qualidade",
+     "v": "Qualidade topo em modelo aberto",
+     "e": false,
+     "c": [
+      [
+       "ComfyUI",
+       "a forma mais flexível de correr o FLUX"
+      ],
+      [
+       "InvokeAI",
+       "o FLUX numa interface mais simples"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "seguranca",
+   "nome": "Segurança e proteção",
+   "icon": "shield",
+   "cor": "#ff6b5f",
+   "resumo": "Encontrar segredos expostos, dependências vulneráveis e código perigoso antes que alguém o faça.",
+   "porque": "Um agente escreve código depressa — e erros de segurança também. Estes scanners correm em segundos e apanham o que a revisão humana deixa passar.",
+   "missao": "Exemplo: varrer um repositório antes de o tornar público.",
+   "passos": [
+    "Corre o Gitleaks no repositório e no histórico.",
+    "Corre o OSV-Scanner e atualiza o que estiver vulnerável.",
+    "Corre o Semgrep e corrige os achados de severidade alta.",
+    "Verifica cada MCP com o mcp-scan antes de o ligares.",
+    "Repete antes de cada publicação."
+   ],
+   "apis": [],
+   "palavras": [
+    "security",
+    "segurança",
+    "secret",
+    "gitleaks",
+    "osv",
+    "cso",
+    "guard",
+    "vulnerab",
+    "audit"
+   ],
+   "cookbook": [],
+   "itens": [
+    {
+     "t": "cli",
+     "n": "Gitleaks",
+     "r": "gitleaks/gitleaks",
+     "p": "Encontra chaves e senhas no código",
+     "v": "Evita publicar segredos no GitHub",
+     "e": true,
+     "c": [
+      [
+       "OSV-Scanner",
+       "segredos e dependências vulneráveis no mesmo passo"
+      ],
+      [
+       "Claude Code Action",
+       "verifica cada PR antes de entrar"
+      ]
+     ]
+    },
+    {
+     "t": "cli",
+     "n": "OSV-Scanner",
+     "r": "google/osv-scanner",
+     "p": "Dependências com falhas conhecidas",
+     "v": "Base de dados oficial do Google",
+     "e": true,
+     "c": [
+      [
+       "Gitleaks",
+       "cobre o que o OSV não vê: chaves no código"
+      ],
+      [
+       "Trivy",
+       "estende a análise a contentores"
+      ]
+     ]
+    },
+    {
+     "t": "skill",
+     "n": "Claude Code Security Review",
+     "r": "anthropics/claude-code-security-review",
+     "p": "Revisão de segurança feita pelo agente",
+     "v": "Oficial; corre em PRs",
+     "e": true,
+     "c": [
+      [
+       "Semgrep",
+       "regras determinísticas mais revisão com IA"
+      ],
+      [
+       "Gitleaks",
+       "o agente não deixa passar segredos"
+      ]
+     ]
+    },
+    {
+     "t": "cli",
+     "n": "Trivy",
+     "r": "aquasecurity/trivy",
+     "p": "Contentores, dependências e configurações",
+     "v": "Um só scanner para muita coisa",
+     "e": false,
+     "c": [
+      [
+       "OSV-Scanner",
+       "dependências e imagens Docker cobertas"
+      ],
+      [
+       "Gitleaks",
+       "segredos fora das imagens"
+      ]
+     ]
+    },
+    {
+     "t": "doc",
+     "n": "OWASP Cheat Sheets",
+     "r": "OWASP/CheatSheetSeries",
+     "p": "Guias de segurança por tema",
+     "v": "A referência que o agente deve seguir",
+     "e": false,
+     "c": [
+      [
+       "Claude Code Security Review",
+       "o agente revê contra as boas práticas OWASP"
+      ],
+      [
+       "Semgrep",
+       "transforma as regras em verificações automáticas"
+      ]
+     ]
+    },
+    {
+     "t": "cli",
+     "n": "TruffleHog",
+     "r": "trufflesecurity/trufflehog",
+     "p": "Segredos no histórico do git",
+     "v": "Verifica se a chave ainda está ativa",
+     "e": false,
+     "c": [
+      [
+       "Gitleaks",
+       "duas redes para apanhar chaves esquecidas"
+      ],
+      [
+       "GitHub MCP",
+       "verifica o histórico do repositório"
+      ]
+     ]
+    },
+    {
+     "t": "cli",
+     "n": "Semgrep",
+     "r": "semgrep/semgrep",
+     "p": "Padrões inseguros no código",
+     "v": "Regras prontas para muitas linguagens",
+     "e": false,
+     "c": [
+      [
+       "Claude Code Security Review",
+       "o Semgrep encontra, o agente explica e corrige"
+      ],
+      [
+       "Ruff",
+       "qualidade e segurança no mesmo pre-commit"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "codigo",
+   "nome": "Código e correção de erros",
+   "icon": "bug",
+   "cor": "#c6f24e",
+   "resumo": "Menos erros, código mais limpo e um agente que verifica o que faz antes de dizer que está feito.",
+   "porque": "O erro mais caro é o que o agente diz que corrigiu mas não testou. Estas ferramentas obrigam a provar.",
+   "missao": "Exemplo: limpar um projeto herdado, pôr testes e corrigir os erros de lint.",
+   "passos": [
+    "Reproduz o erro com um teste que falha.",
+    "Corrige o mínimo para o teste passar.",
+    "Corre o lint e todos os testes.",
+    "Só então dá por concluído — com a prova à vista."
+   ],
+   "apis": [],
+   "palavras": [
+    "code review",
+    "debug",
+    "test",
+    "tdd",
+    "qa",
+    "refactor",
+    "bug",
+    "review",
+    "lint"
+   ],
+   "cookbook": [
+    "coding",
+    "evals"
+   ],
+   "itens": [
+    {
+     "t": "skill",
+     "n": "Matt Pocock Skills",
+     "r": "mattpocock/skills",
+     "p": "TDD, diagnóstico, revisão e desenho de código",
+     "v": "Skills curtas e muito usadas",
+     "e": true,
+     "c": [
+      [
+       "Superpowers",
+       "método de TDD e revisão para o código TypeScript"
+      ],
+      [
+       "Biome",
+       "formatação e lint instantâneos"
+      ]
+     ]
+    },
+    {
+     "t": "skill",
+     "n": "Superpowers",
+     "r": "obra/superpowers",
+     "p": "Método: planear, testar, depurar, rever",
+     "v": "O agente trabalha com disciplina de engenheiro",
+     "e": true,
+     "c": [
+      [
+       "Karpathy guidelines",
+       "plano disciplinado e código mínimo"
+      ],
+      [
+       "gstack (review, qa, investigate)",
+       "revisão e QA a seguir ao plano"
+      ]
+     ]
+    },
+    {
+     "t": "skill",
+     "n": "Karpathy guidelines",
+     "r": "multica-ai/andrej-karpathy-skills",
+     "p": "Regras contra os erros típicos dos LLM",
+     "v": "Menos código a mais, menos suposições",
+     "e": true,
+     "c": [
+      [
+       "Caveman",
+       "menos código e menos palavras: menos tokens"
+      ],
+      [
+       "Context7",
+       "o agente não inventa APIs"
+      ]
+     ]
+    },
+    {
+     "t": "skill",
+     "n": "gstack (review, qa, investigate)",
+     "r": "garrytan/gstack",
+     "p": "Revisão, QA no browser e investigação de bugs",
+     "v": "Fluxo completo de equipa num só pacote",
+     "e": false,
+     "c": [
+      [
+       "Superpowers",
+       "método antes, revisão depois"
+      ],
+      [
+       "Playwright MCP",
+       "QA com o browser real"
+      ]
+     ]
+    },
+    {
+     "t": "cli",
+     "n": "Ruff",
+     "r": "astral-sh/ruff",
+     "p": "Lint e formatação Python",
+     "v": "Muito rápido",
+     "e": false,
+     "c": [
+      [
+       "Semgrep",
+       "estilo e segurança em Python"
+      ],
+      [
+       "FastAPI",
+       "APIs Python sempre limpas"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Sentry",
+     "r": "getsentry/sentry",
+     "p": "Erros em produção",
+     "v": "Vês o erro real do utilizador",
+     "e": false,
+     "c": [
+      [
+       "Claude Code Action",
+       "erros de produção viram PRs de correção"
+      ],
+      [
+       "GitHub MCP",
+       "liga o erro ao commit que o causou"
+      ]
+     ]
+    },
+    {
+     "t": "cli",
+     "n": "Biome",
+     "r": "biomejs/biome",
+     "p": "Lint e formatação JS/TS",
+     "v": "Substitui ESLint e Prettier",
+     "e": false,
+     "c": [
+      [
+       "Matt Pocock Skills",
+       "TypeScript sério com ferramentas rápidas"
+      ],
+      [
+       "Tailwind CSS",
+       "ordena as classes e formata tudo"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "escrita",
+   "nome": "Reduzir erros e tokens",
+   "icon": "brain",
+   "cor": "#e7d38a",
+   "resumo": "Resolve os três problemas que mais custam: o agente esquece (memória), confunde-se (instruções vagas) e fala demais (tokens). Menos erros, respostas mais curtas, contas mais baixas.",
+   "porque": "Cada token custa e cada mal-entendido obriga a repetir. Regras de comportamento claras (Karpathy), memória entre sessões e compressão cortam o desperdício na origem — e o router manda o trabalho simples para modelos grátis.",
+   "missao": "Exemplo: cortar para metade o custo mensal do Claude Code sem perder qualidade, e deixar de explicar o projeto em cada sessão.",
+   "passos": [
+    "Mede primeiro: quanto gasta uma tarefa típica (o Claude Code mostra o custo com /cost).",
+    "Instala a skill Karpathy guidelines: o agente pergunta em vez de inventar e muda só o necessário.",
+    "Escreve um CLAUDE.md / AGENTS.md curto com a missão e as regras do projeto — o agente deixa de adivinhar.",
+    "Liga uma memória (claude-mem ou Basic Memory) para não explicares o projeto em cada sessão.",
+    "Usa o Context7 em vez de colar documentação; lê só os ficheiros necessários.",
+    "Ativa o Caveman para respostas curtas e usa /compact quando a conversa crescer.",
+    "Põe um router (OmniRoute) para enviar o trabalho simples para modelos grátis ou locais.",
+    "Mede de novo e compara."
+   ],
+   "apis": [
+    {
+     "n": "Ollama (local)",
+     "p": "Tarefas simples num modelo grátis no teu PC, sem gastar a subscrição"
+    }
+   ],
+   "palavras": [
+    "token",
+    "cost",
+    "memory",
+    "prompt",
+    "context",
+    "compact",
+    "karpathy",
+    "caveman",
+    "memória"
+   ],
+   "cookbook": [
+    "cost_optimization",
+    "misc",
+    "latency_optimization"
+   ],
+   "itens": [
+    {
+     "t": "skill",
+     "n": "Karpathy guidelines",
+     "r": "multica-ai/andrej-karpathy-skills",
+     "p": "Pensar antes, mudar só o necessário",
+     "v": "Menos voltas, menos tokens gastos a corrigir",
+     "e": true,
+     "c": [
+      [
+       "Caveman",
+       "menos código e menos palavras: menos tokens"
+      ],
+      [
+       "Context7",
+       "o agente não inventa APIs"
+      ]
+     ]
+    },
+    {
+     "t": "skill",
+     "n": "Caveman",
+     "r": "JuliusBrussee/caveman",
+     "p": "Respostas curtas e diretas",
+     "v": "Corta o texto inútil das respostas",
+     "e": true,
+     "c": [
+      [
+       "Karpathy guidelines",
+       "respostas curtas e código curto"
+      ],
+      [
+       "OmniRoute",
+       "menos tokens por pedido e o modelo mais barato"
+      ]
+     ]
+    },
+    {
+     "t": "mcp",
+     "n": "Context7",
+     "r": "upstash/context7",
+     "p": "Documentação certa no momento certo",
+     "v": "Evita erros por APIs antigas",
+     "e": true,
+     "c": [
+      [
+       "Claude Agent SDK (Python)",
+       "o agente consulta a documentação certa da versão em uso"
+      ],
+      [
+       "Karpathy guidelines",
+       "menos código inventado, menos tokens gastos"
+      ]
+     ]
+    },
+    {
+     "t": "mcp",
+     "n": "claude-mem",
+     "r": "thedotmack/claude-mem",
+     "p": "Memória entre sessões",
+     "v": "Deixas de explicar o projeto de cada vez",
+     "e": false,
+     "c": [
+      [
+       "Basic Memory",
+       "memória da sessão e notas duradouras"
+      ],
+      [
+       "Context7",
+       "lembra o projeto e consulta a documentação certa"
+      ]
+     ]
+    },
+    {
+     "t": "cli",
+     "n": "OmniRoute",
+     "r": "cheaper-inference/OmniRoute",
+     "p": "Router de modelos com níveis grátis",
+     "v": "Tarefas simples vão para modelos baratos",
+     "e": false,
+     "c": [
+      [
+       "Caveman",
+       "router barato mais respostas curtas"
+      ],
+      [
+       "LLMLingua",
+       "comprime o prompt antes de o enviar"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "Mem0",
+     "r": "mem0ai/mem0",
+     "p": "Camada de memória para apps",
+     "v": "Memória para os teus próprios agentes",
+     "e": false,
+     "c": [
+      [
+       "Claude Agent SDK (Python)",
+       "agentes que se lembram do utilizador"
+      ],
+      [
+       "Qdrant",
+       "memória vetorial a escalar"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "LLMLingua",
+     "r": "microsoft/LLMLingua",
+     "p": "Comprimir prompts longos",
+     "v": "Menos tokens com o mesmo sentido",
+     "e": false,
+     "c": [
+      [
+       "OmniRoute",
+       "menos tokens e o fornecedor mais barato"
+      ],
+      [
+       "LlamaIndex",
+       "RAG com contexto comprimido"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "aiapps",
+   "nome": "Apps com IA",
+   "icon": "app",
+   "cor": "#b18cff",
+   "resumo": "Construir a tua própria app com IA: do exemplo do Cookbook ao instalador.",
+   "porque": "O Claude Cookbook e os Quickstarts dão-te código que já funciona; o SDK e o MCP ligam a tua app a qualquer agente.",
+   "missao": "Exemplo: uma app de desktop que resume documentos com o Claude e guarda tudo no PC.",
+   "passos": [
+    "Escolhe a receita no Claude Cookbook mais perto da tua ideia.",
+    "Corre o Quickstart correspondente tal como está.",
+    "Muda uma coisa de cada vez e testa.",
+    "Expõe as funções como MCP para o teu agente usar.",
+    "Empacota com Electron ou Tauri.",
+    "Revê segurança (kit Segurança) antes de distribuir."
+   ],
+   "apis": [
+    {
+     "n": "Claude API",
+     "p": "Paga por uso; põe limite de gasto"
+    },
+    {
+     "n": "Ollama (local)",
+     "p": "Grátis para testar sem gastar"
+    }
+   ],
+   "palavras": [
+    "app",
+    "electron",
+    "claude api",
+    "sdk",
+    "build",
+    "orchestrator",
+    "ios",
+    "flutter",
+    "anthropic"
+   ],
+   "cookbook": [
+    "claude_agent_sdk",
+    "tool_use",
+    "skills",
+    "capabilities"
+   ],
+   "itens": [
+    {
+     "t": "doc",
+     "n": "Claude Cookbook",
+     "r": "anthropics/claude-cookbooks",
+     "p": "Receitas oficiais: agentes, ferramentas, RAG, skills",
+     "v": "Exemplos que funcionam, para copiar e adaptar",
+     "e": true,
+     "c": [
+      [
+       "Claude Quickstarts",
+       "receitas mais apps completas para começar"
+      ],
+      [
+       "AI SDK (Vercel)",
+       "leva as receitas para uma app web"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "AI SDK (Vercel)",
+     "r": "vercel/ai",
+     "p": "Chat e streaming em apps web",
+     "v": "Troca de modelo numa linha",
+     "e": true,
+     "c": [
+      [
+       "shadcn/ui",
+       "interface de chat pronta"
+      ],
+      [
+       "Claude Cookbook",
+       "padrões oficiais de prompts e ferramentas"
+      ]
+     ]
+    },
+    {
+     "t": "doc",
+     "n": "Claude Quickstarts",
+     "r": "anthropics/claude-quickstarts",
+     "p": "Apps de exemplo completas",
+     "v": "Começas de algo que já corre",
+     "e": true,
+     "c": [
+      [
+       "Claude Cookbook",
+       "a teoria das receitas mais o código completo"
+      ],
+      [
+       "Electron",
+       "transforma um quickstart em app de secretária"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Claude Code",
+     "r": "anthropics/claude-code",
+     "p": "O agente que constrói contigo",
+     "v": "O teu programador no terminal",
+     "e": false,
+     "c": [
+      [
+       "Superpowers",
+       "o Claude Code segue um método fiável"
+      ],
+      [
+       "Servidores MCP de referência",
+       "dá-lhe mãos: ficheiros, git, web"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Electron",
+     "r": "electron/electron",
+     "p": "Apps de desktop com web",
+     "v": "Uma app para Windows, Mac e Linux",
+     "e": false,
+     "c": [
+      [
+       "Claude Agent SDK (Python)",
+       "app de secretária com agentes dentro"
+      ],
+      [
+       "Tauri",
+       "a alternativa leve quando o tamanho importa"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Tauri",
+     "r": "tauri-apps/tauri",
+     "p": "Apps de desktop leves",
+     "v": "Instalador pequeno e seguro",
+     "e": false,
+     "c": [
+      [
+       "Hono",
+       "interface web leve com back-end mínimo"
+      ],
+      [
+       "Electron",
+       "compara antes de escolher"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "MCP Python SDK",
+     "r": "modelcontextprotocol/python-sdk",
+     "p": "O SDK oficial do MCP",
+     "v": "Liga a tua app a qualquer agente",
+     "e": false,
+     "c": [
+      [
+       "FastMCP",
+       "escreve o servidor mais depressa"
+      ],
+      [
+       "Servidores MCP de referência",
+       "exemplos oficiais para copiar"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pesquisa",
+   "nome": "Pesquisa e RAG",
+   "icon": "search",
+   "cor": "#9be7ff",
+   "resumo": "Dar ao agente conhecimento atual e documentos teus, com fontes citadas.",
+   "porque": "O LLM só sabe até à data de treino. RAG junta páginas e documentos teus ao pedido, para respostas com fonte.",
+   "missao": "Exemplo: um assistente que responde sobre os teus PDFs e cita a página.",
+   "passos": [
+    "Junta as fontes: páginas, PDFs, notas.",
+    "Converte para texto limpo (Crawl4AI).",
+    "Divide e indexa numa base vetorial.",
+    "Pede ao agente que cite sempre a fonte.",
+    "Testa com perguntas cuja resposta já sabes."
+   ],
+   "apis": [],
+   "palavras": [
+    "research",
+    "pesquisa",
+    "scrape",
+    "crawl",
+    "rag",
+    "search",
+    "defuddle"
+   ],
+   "cookbook": [
+    "capabilities/retrieval_augmented_generation",
+    "capabilities/contextual-embeddings",
+    "capabilities/knowledge_graph"
+   ],
+   "itens": [
+    {
+     "t": "cli",
+     "n": "Firecrawl",
+     "r": "firecrawl/firecrawl",
+     "p": "Páginas web em texto limpo",
+     "v": "Pronto para o agente ler",
+     "e": true,
+     "c": [
+      [
+       "LlamaIndex",
+       "páginas limpas viram base de conhecimento"
+      ],
+      [
+       "MarkItDown",
+       "PDFs e Office também em Markdown"
+      ]
+     ]
+    },
+    {
+     "t": "cli",
+     "n": "Crawl4AI",
+     "r": "unclecode/crawl4ai",
+     "p": "Crawler open source para LLM",
+     "v": "Local e grátis",
+     "e": true,
+     "c": [
+      [
+       "Chroma",
+       "recolhe e indexa localmente, sem custos"
+      ],
+      [
+       "LlamaIndex",
+       "pesquisa sobre o que recolheste"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "LlamaIndex",
+     "r": "run-llama/llama_index",
+     "p": "Ligar documentos a um LLM",
+     "v": "RAG com poucos passos",
+     "e": true,
+     "c": [
+      [
+       "Qdrant",
+       "vetores a escalar em produção"
+      ],
+      [
+       "Firecrawl",
+       "alimenta o índice com a web"
+      ]
+     ]
+    },
+    {
+     "t": "cli",
+     "n": "MarkItDown",
+     "r": "microsoft/markitdown",
+     "p": "PDF, Word e Excel para Markdown",
+     "v": "O agente lê qualquer documento",
+     "e": false,
+     "c": [
+      [
+       "LlamaIndex",
+       "documentos de Office viram contexto para o LLM"
+      ],
+      [
+       "Defuddle",
+       "páginas web limpas no mesmo formato"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "RAGFlow",
+     "r": "infiniflow/ragflow",
+     "p": "Motor de RAG com interface",
+     "v": "Respostas com citações",
+     "e": false,
+     "c": [
+      [
+       "Qdrant",
+       "armazenamento vetorial robusto"
+      ],
+      [
+       "MarkItDown",
+       "ingestão de documentos variados"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Qdrant",
+     "r": "qdrant/qdrant",
+     "p": "Base de dados vetorial",
+     "v": "Rápida e com camada grátis",
+     "e": false,
+     "c": [
+      [
+       "LlamaIndex",
+       "o par clássico de RAG"
+      ],
+      [
+       "Mem0",
+       "memória de agentes guardada em vetores"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "Chroma",
+     "r": "chroma-core/chroma",
+     "p": "Vetores simples e locais",
+     "v": "O mais fácil para começar",
+     "e": false,
+     "c": [
+      [
+       "Crawl4AI",
+       "RAG local e grátis do início ao fim"
+      ],
+      [
+       "LlamaIndex",
+       "orquestra a pesquisa"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "automacao",
+   "nome": "Automação e ligações",
+   "icon": "flow",
+   "cor": "#ff9f43",
+   "resumo": "Ligar apps entre si com fluxos: gatilho → agente → ação.",
+   "porque": "Muito trabalho repetido é só passar dados de um sítio para outro. Um fluxo visual faz isso; o agente entra onde é preciso decidir.",
+   "missao": "Exemplo: novo formulário → agente resume → cria tarefa → avisa-te.",
+   "passos": [
+    "Desenha o fluxo em papel: gatilho, passos, resultado.",
+    "Monta-o no n8n sem IA primeiro.",
+    "Acrescenta o agente só no passo que exige decidir.",
+    "Põe aprovação humana antes de enviar ou publicar.",
+    "Corre 10 vezes em teste e revê os registos."
+   ],
+   "apis": [
+    {
+     "n": "public-apis",
+     "r": "public-apis/public-apis",
+     "p": "Centenas de APIs grátis por categoria"
+    }
+   ],
+   "palavras": [
+    "automation",
+    "workflow",
+    "n8n",
+    "zapier",
+    "schedule",
+    "cron",
+    "loop",
+    "automa"
+   ],
+   "cookbook": [],
+   "itens": [
+    {
+     "t": "app",
+     "n": "n8n",
+     "r": "n8n-io/n8n",
+     "p": "Fluxos com nós e gatilhos",
+     "v": "Liga centenas de apps sem código",
+     "e": true,
+     "c": [
+      [
+       "n8n MCP",
+       "o agente constrói os fluxos n8n por ti"
+      ],
+      [
+       "public-apis",
+       "centenas de APIs grátis para ligar"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Langflow",
+     "r": "langflow-ai/langflow",
+     "p": "Fluxos de IA visuais",
+     "v": "Agentes e RAG por nós",
+     "e": true,
+     "c": [
+      [
+       "LangGraph",
+       "protótipo visual, depois código"
+      ],
+      [
+       "Chroma",
+       "fluxos com RAG local"
+      ]
+     ]
+    },
+    {
+     "t": "mcp",
+     "n": "n8n MCP",
+     "r": "czlonkowski/n8n-mcp",
+     "p": "O agente cria fluxos n8n",
+     "v": "Descreves, ele monta",
+     "e": true,
+     "c": [
+      [
+       "n8n",
+       "o MCP precisa de uma instância n8n"
+      ],
+      [
+       "Claude Code",
+       "pedes o fluxo em português e ele monta-o"
+      ]
+     ]
+    },
+    {
+     "t": "doc",
+     "n": "public-apis",
+     "r": "public-apis/public-apis",
+     "p": "APIs grátis por categoria",
+     "v": "Dados para ligar aos fluxos",
+     "e": false,
+     "c": [
+      [
+       "n8n",
+       "liga as APIs sem código"
+      ],
+      [
+       "Firecrawl",
+       "para os sites que não têm API"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Flowise",
+     "r": "FlowiseAI/Flowise",
+     "p": "Chatbots por nós",
+     "v": "Rápido para protótipos",
+     "e": false,
+     "c": [
+      [
+       "Chroma",
+       "chatbots com RAG local"
+      ],
+      [
+       "OmniRoute",
+       "troca de modelo sem refazer o fluxo"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Activepieces",
+     "r": "activepieces/activepieces",
+     "p": "Automação open source",
+     "v": "Alternativa livre ao Zapier",
+     "e": false,
+     "c": [
+      [
+       "public-apis",
+       "automatiza com APIs grátis"
+      ],
+      [
+       "Claude Code",
+       "o agente escreve as peças que faltam"
+      ]
+     ]
+    },
+    {
+     "t": "skill",
+     "n": "Claude Code Action",
+     "r": "anthropics/claude-code-action",
+     "p": "O agente no GitHub Actions",
+     "v": "Tarefas automáticas em cada PR",
+     "e": false,
+     "c": [
+      [
+       "GitHub MCP",
+       "o agente trabalha nos PRs e issues"
+      ],
+      [
+       "Gitleaks",
+       "cada PR verificado antes de entrar"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cad3d",
+   "nome": "CAD, 3D e arquitetura",
+   "icon": "cube",
+   "cor": "#5ff0d0",
+   "resumo": "Agentes que modelam, convertem e renderizam: Blender, FreeCAD, IFC e programas ligados por CLI.",
+   "porque": "Programas de desenho têm APIs. Um MCP ou uma CLI à volta delas deixa o agente criar e alterar modelos — sempre numa cópia do ficheiro.",
+   "missao": "Exemplo: gerar volumes de estudo a partir de uma planta e renderizar 3 vistas.",
+   "passos": [
+    "Trabalha sempre numa cópia do ficheiro original.",
+    "Liga o Blender MCP e testa com uma cena vazia.",
+    "Descreve o objetivo em medidas e vistas, não em adjetivos.",
+    "Revê cada passo no programa antes do seguinte.",
+    "Exporta e guarda as versões."
+   ],
+   "apis": [],
+   "palavras": [
+    "cad",
+    "sketchup",
+    "revit",
+    "bim",
+    "architecture",
+    "arquitet",
+    "3d",
+    "blender",
+    "threejs",
+    "render"
+   ],
+   "cookbook": [],
+   "itens": [
+    {
+     "t": "app",
+     "n": "FreeCAD",
+     "r": "FreeCAD/FreeCAD",
+     "p": "CAD paramétrico",
+     "v": "Desenho técnico open source",
+     "e": true,
+     "c": [
+      [
+       "CadQuery",
+       "modelação paramétrica em Python"
+      ],
+      [
+       "IfcOpenShell",
+       "exporta para BIM/IFC"
+      ]
+     ]
+    },
+    {
+     "t": "mcp",
+     "n": "Blender MCP",
+     "r": "ahujasid/mcp-for-blender",
+     "p": "O agente modela no Blender",
+     "v": "Cenas 3D por conversa",
+     "e": true,
+     "c": [
+      [
+       "Blender",
+       "o MCP comanda o Blender por pedido"
+      ],
+      [
+       "three.js",
+       "leva o modelo para a web"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Blender",
+     "r": "blender/blender",
+     "p": "3D, render e animação",
+     "v": "Grátis e profissional",
+     "e": true,
+     "c": [
+      [
+       "Blender MCP",
+       "o agente modela por ti"
+      ],
+      [
+       "FFmpeg",
+       "finaliza os vídeos renderizados"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "three.js",
+     "r": "mrdoob/three.js",
+     "p": "3D no browser",
+     "v": "Apresentações 3D na web",
+     "e": false,
+     "c": [
+      [
+       "Blender",
+       "modela no Blender, mostra na web"
+      ],
+      [
+       "Motion",
+       "interface animada à volta do 3D"
+      ]
+     ]
+    },
+    {
+     "t": "cli",
+     "n": "CLI-Anything",
+     "r": "HKUDS/CLI-Anything",
+     "p": "Transforma programas em CLI para agentes",
+     "v": "Liga software de CAD ao agente",
+     "e": false,
+     "c": [
+      [
+       "Blender",
+       "dá uma CLI a programas sem API"
+      ],
+      [
+       "FreeCAD",
+       "o agente comanda o CAD por linha de comando"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "CadQuery",
+     "r": "CadQuery/cadquery",
+     "p": "CAD em Python",
+     "v": "Peças geradas por código",
+     "e": false,
+     "c": [
+      [
+       "FreeCAD",
+       "abre e afina o que geraste em código"
+      ],
+      [
+       "three.js",
+       "mostra as peças no browser"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "IfcOpenShell",
+     "r": "IfcOpenShell/IfcOpenShell",
+     "p": "Ler e escrever IFC/BIM",
+     "v": "Dados BIM abertos",
+     "e": false,
+     "c": [
+      [
+       "FreeCAD",
+       "edição BIM em open source"
+      ],
+      [
+       "three.js",
+       "visualizador IFC na web"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "monetizar",
+   "nome": "Monetizar com IA",
+   "icon": "coin",
+   "cor": "#ffd23f",
+   "resumo": "Vender o que crias: subscrições, licenças, produtos digitais e marcações.",
+   "porque": "Cobrar exige um fornecedor de pagamentos de confiança. O agente prepara produtos e páginas; quem confirma pagamentos e reembolsos és tu.",
+   "missao": "Exemplo: vender uma app com plano grátis e plano pago mensal.",
+   "passos": [
+    "Define o que vendes, a quem e por quanto.",
+    "Escolhe o fornecedor e cria a conta em modo de teste.",
+    "Cria o produto e a página de checkout.",
+    "Testa compra, cancelamento e reembolso no modo de teste.",
+    "Revê termos, faturação e impostos do teu país antes de ligar o real."
+   ],
+   "apis": [
+    {
+     "n": "Modo de teste dos fornecedores",
+     "p": "Testa tudo com cartões de teste antes de ligar o real"
+    }
+   ],
+   "palavras": [
+    "payment",
+    "stripe",
+    "shopify",
+    "pricing",
+    "monet",
+    "sales",
+    "invoice",
+    "billing"
+   ],
+   "cookbook": [],
+   "itens": [
+    {
+     "t": "app",
+     "n": "Polar",
+     "r": "polarsource/polar",
+     "p": "Vender software e subscrições",
+     "v": "Feito para quem vende código",
+     "e": true,
+     "c": [
+      [
+       "Hono",
+       "checkout numa API mínima"
+      ],
+      [
+       "Keygen",
+       "licenças para software vendido"
+      ]
+     ]
+    },
+    {
+     "t": "cli",
+     "n": "Stripe CLI",
+     "r": "stripe/stripe-cli",
+     "p": "Testar pagamentos e webhooks",
+     "v": "Modo de teste no teu PC",
+     "e": true,
+     "c": [
+      [
+       "Stripe Agent Toolkit",
+       "o agente cria produtos e testa pagamentos"
+      ],
+      [
+       "Hono",
+       "webhooks de pagamento numa API leve"
+      ]
+     ]
+    },
+    {
+     "t": "mcp",
+     "n": "Stripe Agent Toolkit",
+     "r": "stripe/ai",
+     "p": "O agente cria produtos e links de pagamento",
+     "v": "Pagamentos sem escrever a integração toda",
+     "e": true,
+     "c": [
+      [
+       "Stripe CLI",
+       "testa os webhooks no teu PC"
+      ],
+      [
+       "Lago",
+       "faturação por uso"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Medusa",
+     "r": "medusajs/medusa",
+     "p": "Loja online open source",
+     "v": "Comércio sem mensalidade de plataforma",
+     "e": false,
+     "c": [
+      [
+       "Stripe CLI",
+       "loja com pagamentos testados"
+      ],
+      [
+       "Umami",
+       "analítica sem cookies"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Dub",
+     "r": "dubinc/dub.link",
+     "p": "Links e afiliados",
+     "v": "Mede de onde vêm as vendas",
+     "e": false,
+     "c": [
+      [
+       "Plausible",
+       "links curtos com analítica"
+      ],
+      [
+       "Postiz",
+       "partilha nas redes com links medidos"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Lago",
+     "r": "getlago/lago",
+     "p": "Faturação por uso",
+     "v": "Cobrar por consumo de IA",
+     "e": false,
+     "c": [
+      [
+       "Stripe Agent Toolkit",
+       "cobrança por uso de API"
+      ],
+      [
+       "Polar",
+       "assinaturas mais uso"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Keygen",
+     "r": "keygen-sh/keygen-api",
+     "p": "Licenças de software",
+     "v": "Vender apps de desktop com chave",
+     "e": false,
+     "c": [
+      [
+       "Polar",
+       "vende e licencia software"
+      ],
+      [
+       "Electron",
+       "licenças em apps de secretária"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "docs",
+   "nome": "Docs e memória",
+   "icon": "book",
+   "cor": "#d4b8ff",
+   "resumo": "Documentos, memória e segundo cérebro que o agente lê e escreve.",
+   "porque": "Tudo em Markdown fica legível por ti e pelo agente: notas, fontes, decisões e relatórios no mesmo sítio.",
+   "missao": "Exemplo: um vault do Obsidian onde o agente regista o que fez e o que decidiu.",
+   "passos": [
+    "Cria um vault (pasta) para o projeto.",
+    "Instala as Obsidian Skills.",
+    "Converte os documentos existentes com o MarkItDown.",
+    "Liga a memória (Basic Memory) ao agente.",
+    "Define um registo diário do que foi feito.",
+    "Revê a memória todas as semanas."
+   ],
+   "apis": [],
+   "palavras": [
+    "docs",
+    "pdf",
+    "docx",
+    "xlsx",
+    "pptx",
+    "obsidian",
+    "markdown",
+    "vault",
+    "second brain",
+    "note",
+    "canvas"
+   ],
+   "cookbook": [],
+   "itens": [
+    {
+     "t": "skill",
+     "n": "Anthropic Skills (docx, pdf, xlsx, pptx)",
+     "r": "anthropics/skills",
+     "p": "Criar e editar documentos do Office e PDF",
+     "v": "Relatórios e folhas de cálculo prontos",
+     "e": true,
+     "c": [
+      [
+       "MarkItDown",
+       "lê documentos e volta a escrevê-los"
+      ],
+      [
+       "Obsidian Skills",
+       "notas viram relatórios"
+      ]
+     ]
+    },
+    {
+     "t": "skill",
+     "n": "Obsidian Skills",
+     "r": "obsidianmd/obsidian-skills",
+     "p": "Markdown, Bases e Canvas do Obsidian",
+     "v": "Um segundo cérebro que o agente sabe usar",
+     "e": true,
+     "c": [
+      [
+       "Basic Memory",
+       "o agente lê e escreve no teu cofre"
+      ],
+      [
+       "Defuddle",
+       "guarda páginas web limpas no Obsidian"
+      ]
+     ]
+    },
+    {
+     "t": "mcp",
+     "n": "Basic Memory",
+     "r": "basicmachines-co/basic-memory",
+     "p": "Memória em ficheiros Markdown",
+     "v": "Tu vês e editas o que o agente lembra",
+     "e": true,
+     "c": [
+      [
+       "Obsidian Skills",
+       "memória em Markdown que tu também lês"
+      ],
+      [
+       "claude-mem",
+       "memória da sessão e de longo prazo"
+      ]
+     ]
+    },
+    {
+     "t": "cli",
+     "n": "MarkItDown",
+     "r": "microsoft/markitdown",
+     "p": "Converter documentos para Markdown",
+     "v": "Tudo legível pelo agente",
+     "e": false,
+     "c": [
+      [
+       "LlamaIndex",
+       "documentos de Office viram contexto para o LLM"
+      ],
+      [
+       "Defuddle",
+       "páginas web limpas no mesmo formato"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "Graphiti",
+     "r": "getzep/graphiti",
+     "p": "Memória em grafo com tempo",
+     "v": "Sabe o que mudou e quando",
+     "e": false,
+     "c": [
+      [
+       "Qdrant",
+       "grafo de conhecimento mais vetores"
+      ],
+      [
+       "Mem0",
+       "memória de agentes com relações"
+      ]
+     ]
+    },
+    {
+     "t": "cli",
+     "n": "Defuddle",
+     "r": "kepano/defuddle",
+     "p": "Páginas web limpas em Markdown",
+     "v": "Guardar fontes sem lixo",
+     "e": false,
+     "c": [
+      [
+       "Obsidian Skills",
+       "artigos limpos direto para as notas"
+      ],
+      [
+       "MarkItDown",
+       "web e documentos no mesmo formato"
+      ]
+     ]
+    },
+    {
+     "t": "cli",
+     "n": "Vale",
+     "r": "vale-cli/vale",
+     "p": "Revisor de estilo de texto",
+     "v": "Documentação consistente",
+     "e": false,
+     "c": [
+      [
+       "LanguageTool",
+       "estilo e gramática verificados"
+      ],
+      [
+       "Anthropic Skills (docx, pdf, xlsx, pptx)",
+       "documentos revistos antes de sair"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "marketing",
+   "nome": "Marketing e conteúdo",
+   "icon": "megaphone",
+   "cor": "#ff8f6b",
+   "resumo": "Conteúdo, SEO e publicação com método, sem perder a voz da marca.",
+   "porque": "As skills de marketing dão estrutura; o Postiz publica; o analytics mostra o que resultou.",
+   "missao": "Exemplo: um mês de publicações para 3 redes, com medição de resultados.",
+   "passos": [
+    "Define público, oferta e tom.",
+    "Gera o calendário com as Marketing Skills.",
+    "Revê os textos com o LanguageTool.",
+    "Agenda no Postiz.",
+    "Mede no Umami ou no Plausible.",
+    "Repete o que resultou."
+   ],
+   "apis": [],
+   "palavras": [
+    "marketing",
+    "seo",
+    "social",
+    "campaign",
+    "content",
+    "linkedin",
+    "post",
+    "copy",
+    "brand"
+   ],
+   "cookbook": [],
+   "itens": [
+    {
+     "t": "skill",
+     "n": "Marketing Skills",
+     "r": "coreyhaines31/marketingskills",
+     "p": "SEO, copy, lançamento e conversão",
+     "v": "Método de marketing pronto para o agente",
+     "e": true,
+     "c": [
+      [
+       "Postiz",
+       "o agente escreve, o Postiz agenda"
+      ],
+      [
+       "Plausible",
+       "mede o que resultou"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Postiz",
+     "r": "gitroomhq/postiz-app",
+     "p": "Agendar publicações em redes sociais",
+     "v": "Um só sítio para todas as redes",
+     "e": true,
+     "c": [
+      [
+       "Marketing Skills",
+       "conteúdo com estratégia"
+      ],
+      [
+       "Dub",
+       "links medidos em cada publicação"
+      ]
+     ]
+    },
+    {
+     "t": "skill",
+     "n": "Knowledge Work Plugins (marketing)",
+     "r": "anthropics/knowledge-work-plugins",
+     "p": "Plugins oficiais de marketing e vendas",
+     "v": "Campanhas e briefs com estrutura",
+     "e": true,
+     "c": [
+      [
+       "Marketing Skills",
+       "planeamento e execução de campanhas"
+      ],
+      [
+       "Umami",
+       "dados reais para decidir"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Umami",
+     "r": "umami-software/umami",
+     "p": "Estatísticas do site sem cookies",
+     "v": "Privado e leve",
+     "e": false,
+     "c": [
+      [
+       "Lighthouse",
+       "tráfego e performance do site"
+      ],
+      [
+       "Marketing Skills",
+       "decisões com base nos números"
+      ]
+     ]
+    },
+    {
+     "t": "cli",
+     "n": "Lighthouse",
+     "r": "GoogleChrome/lighthouse",
+     "p": "SEO, velocidade e acessibilidade",
+     "v": "Nota objetiva da página",
+     "e": false,
+     "c": [
+      [
+       "Chrome DevTools MCP",
+       "o agente mede e corrige a performance"
+      ],
+      [
+       "Vercel Agent Skills (web-design-guidelines)",
+       "regras e medição juntas"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Plausible",
+     "r": "plausible/analytics",
+     "p": "Analytics simples e privado",
+     "v": "Fácil de ler, conforme o RGPD",
+     "e": false,
+     "c": [
+      [
+       "Dub",
+       "links de campanha medidos"
+      ],
+      [
+       "Lighthouse",
+       "velocidade e conversão"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "LanguageTool",
+     "r": "languagetool-org/languagetool",
+     "p": "Revisão de texto em português",
+     "v": "Textos sem erros",
+     "e": false,
+     "c": [
+      [
+       "Vale",
+       "gramática e estilo de marca"
+      ],
+      [
+       "Marketing Skills",
+       "textos sem erros a publicar"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dados",
+   "nome": "Dados e dashboards",
+   "icon": "chart",
+   "cor": "#7ee0a0",
+   "resumo": "Analisar dados e fazer dashboards sem montar um servidor.",
+   "porque": "O DuckDB lê ficheiros diretamente; o Streamlit transforma a análise numa app que partilhas.",
+   "missao": "Exemplo: um dashboard de vendas a partir de um Excel, atualizado todas as semanas.",
+   "passos": [
+    "Junta os ficheiros numa pasta.",
+    "Explora com DuckDB (SQL) ou pandas.",
+    "Valida os números com uma pessoa do negócio.",
+    "Faz os gráficos com Plotly.",
+    "Publica num dashboard Streamlit.",
+    "Agenda a atualização (kit Automação)."
+   ],
+   "apis": [],
+   "palavras": [
+    "data",
+    "dados",
+    "dashboard",
+    "chart",
+    "sql",
+    "analytics",
+    "viz",
+    "xlsx",
+    "csv"
+   ],
+   "cookbook": [
+    "capabilities/text_to_sql",
+    "capabilities/classification"
+   ],
+   "itens": [
+    {
+     "t": "app",
+     "n": "Apache Superset",
+     "r": "apache/superset",
+     "p": "BI open source",
+     "v": "Dashboards para equipas",
+     "e": true,
+     "c": [
+      [
+       "DuckDB",
+       "consultas rápidas em ficheiros locais"
+      ],
+      [
+       "pandas",
+       "preparação dos dados antes do painel"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Streamlit",
+     "r": "streamlit/streamlit",
+     "p": "Dashboards em Python",
+     "v": "Uma app de dados em minutos",
+     "e": true,
+     "c": [
+      [
+       "DuckDB",
+       "app de dados em minutos"
+      ],
+      [
+       "Plotly",
+       "gráficos interativos dentro da app"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "DuckDB",
+     "r": "duckdb/duckdb",
+     "p": "SQL rápido sobre ficheiros",
+     "v": "Analisa CSV e Parquet sem servidor",
+     "e": true,
+     "c": [
+      [
+       "pandas",
+       "SQL rápido sobre DataFrames"
+      ],
+      [
+       "Evidence",
+       "relatórios em SQL e Markdown"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "pandas",
+     "r": "pandas-dev/pandas",
+     "p": "Tabelas em Python",
+     "v": "O padrão da análise de dados",
+     "e": false,
+     "c": [
+      [
+       "DuckDB",
+       "quando os dados crescem demasiado"
+      ],
+      [
+       "Plotly",
+       "gráficos a partir dos DataFrames"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Metabase",
+     "r": "metabase/metabase",
+     "p": "Perguntas aos dados sem SQL",
+     "v": "Fácil para quem não programa",
+     "e": false,
+     "c": [
+      [
+       "DuckDB",
+       "painéis sobre dados locais"
+      ],
+      [
+       "Supabase",
+       "painéis sobre a base da tua app"
+      ]
+     ]
+    },
+    {
+     "t": "lib",
+     "n": "Plotly",
+     "r": "plotly/plotly.py",
+     "p": "Gráficos interativos",
+     "v": "Gráficos bonitos com pouco código",
+     "e": false,
+     "c": [
+      [
+       "Streamlit",
+       "gráficos numa app partilhável"
+      ],
+      [
+       "pandas",
+       "dados limpos para os gráficos"
+      ]
+     ]
+    },
+    {
+     "t": "app",
+     "n": "Evidence",
+     "r": "evidence-dev/evidence",
+     "p": "Relatórios em Markdown e SQL",
+     "v": "Relatórios versionados",
+     "e": false,
+     "c": [
+      [
+       "DuckDB",
+       "relatórios versionados em git"
+      ],
+      [
+       "GitHub MCP",
+       "publica relatórios a cada commit"
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "combos": [
+  {
+   "id": "iniciante",
+   "nome": "Primeiros passos",
+   "kits": [
+    "agente",
+    "codigo",
+    "escrita"
+   ],
+   "frase": "Um assistente com boas regras e prompts curtos."
+  },
+  {
+   "id": "webdesigner",
+   "nome": "Web designer",
+   "kits": [
+    "web",
+    "frontend",
+    "design"
+   ],
+   "frase": "Do estilo ao componente, testado no browser."
+  },
+  {
+   "id": "produto",
+   "nome": "Lançar um produto",
+   "kits": [
+    "frontend",
+    "backend",
+    "seguranca",
+    "monetizar"
+   ],
+   "frase": "Do ecrã ao pagamento, com segurança."
+  },
+  {
+   "id": "appia",
+   "nome": "Criar uma app com IA",
+   "kits": [
+    "aiapps",
+    "agente",
+    "escrita",
+    "seguranca"
+   ],
+   "frase": "Do Cookbook ao instalador."
+  },
+  {
+   "id": "criador",
+   "nome": "Criador de conteúdo",
+   "kits": [
+    "video",
+    "imagem",
+    "marketing",
+    "automacao"
+   ],
+   "frase": "Vídeo, imagem e publicação em série."
+  },
+  {
+   "id": "arquitetura",
+   "nome": "Atelier de arquitetura",
+   "kits": [
+    "cad3d",
+    "imagem",
+    "video"
+   ],
+   "frase": "Modelo, render e apresentação."
+  },
+  {
+   "id": "conhecimento",
+   "nome": "Assistente de conhecimento",
+   "kits": [
+    "pesquisa",
+    "docs",
+    "agente"
+   ],
+   "frase": "Os teus documentos, com respostas citadas."
+  }
+ ]
+}

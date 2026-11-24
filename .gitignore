@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.env
+.env.*
+# user data never belongs in the repo (it lives in ~/.reason-o1)
+config.json
+inventory.json
+gh_cache.json
+
+# translation work files (tools/i18n.py writes them)
+ui/i18n/_*
+# video project: dependencies and render cache
+launch/video/node_modules/
+launch/video/out/
+
+# generated sound (python launch/video/voice.py sfx makes them again)
+launch/video/public/sfx/*.wav

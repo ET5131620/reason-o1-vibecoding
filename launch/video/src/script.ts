@@ -1,0 +1,86 @@
+// Narration, one line per beat. The same ids drive the voice files (public/voice/<lang>/<id>.mp3)
+// and the captions, so EN and PT only differ here.
+export type Lang = "en" | "pt";
+
+export const LINES: Record<Lang, Record<string, string>> = {
+  en: {
+    // the film: problem -> turn -> demo -> result
+    f01: "Most AI projects don't fail because of the code.",
+    f02: "They fail long before the first line... in the setup.",
+    f03: "Too many tools. The wrong ones. Settings that quietly weigh the whole system down.",
+    f04: "And if you don't know exactly where you're going... you burn days, and tokens, building in the dark.",
+    f05: "So... what if the setup came first?",
+    f06: "REASON O1 reads your machine. Every model, agent, skill, MCP server and CLI... on one living map.",
+    f07: "Say you want to build a web page. Open Kits... and choose the goal.",
+    f08: "It shows what you already have, what's missing, and why each tool is there. Nothing extra. Nothing that weighs you down.",
+    f09: "Then the step by step. In the right order.",
+    f10: "Now point the Council at your project. It reads it, writes its passport, and tells you exactly what it needs.",
+    f11: "Fewer errors. Less waste. And a faster road to the result you actually want.",
+    f12: "REASON O1. VibeCoding. Free, open source, and running on your own PC.",
+    f13: "A thank-you to the open source community... and your head start before REASON ONE, arriving in mid-December.",
+    // hooks and closers for the short cuts
+    h02: "You can't build well with tools you can't even see.",
+    t02: "Know what you have. Before you add more.",
+    h03: "Thousands of tools out there. Which ones does your project really need?",
+    h04: "The right tools, in the wrong order... still fail.",
+    t04: "Setup first. Then code.",
+    h05: "Every project has a mission. Does your setup know it?",
+    t05: "Read-only. Local. Yours.",
+    h06: "New tools every week. Most of them are noise.",
+    b06: "Trends shows what developers really use: rising repos, Hacker News and Reddit... with a preview before you leave.",
+    h07: "The bill always arrives after the damage.",
+    b07: "Usage shows your tokens by day, project and model, read from your own logs. And it stays off until you turn it on.",
+    h08: "Seven ideas sit behind every AI tool. Learn them, in four languages.",
+  },
+  pt: {
+    f01: "A maioria dos projetos de IA não falha por causa do código.",
+    f02: "Falha muito antes da primeira linha... na configuração.",
+    f03: "Ferramentas a mais. As erradas. Configurações que, em silêncio, pesam sobre todo o sistema.",
+    f04: "E se não sabes exatamente onde queres chegar... gastas dias, e tokens, a construir às escuras.",
+    f05: "E se... a configuração viesse primeiro?",
+    f06: "O REASON O1 lê a tua máquina. Cada modelo, agente, skill, servidor MCP e CLI... num só mapa vivo.",
+    f07: "Queres criar uma página web? Abre os Kits... e escolhe o objetivo.",
+    f08: "Mostra o que já tens, o que falta, e porque é que cada ferramenta lá está. Nada a mais. Nada que te pese.",
+    f09: "Depois, o passo a passo. Pela ordem certa.",
+    f10: "Agora aponta o Conselho ao teu projeto. Ele lê-o, escreve o passaporte, e diz-te exatamente o que precisa.",
+    f11: "Menos erros. Menos desperdício. E um caminho mais rápido até ao resultado que queres.",
+    f12: "REASON O1. VibeCoding. Grátis, open source, e a correr no teu próprio PC.",
+    f13: "Um obrigado à comunidade open source... e o teu avanço antes do REASON ONE, que chega em meados de dezembro.",
+    h02: "Não constróis bem com ferramentas que nem consegues ver.",
+    t02: "Sabe o que tens. Antes de juntar mais.",
+    h03: "Há milhares de ferramentas. De quais é que o teu projeto precisa mesmo?",
+    h04: "As ferramentas certas, pela ordem errada... continuam a falhar.",
+    t04: "Primeiro a configuração. Depois o código.",
+    h05: "Cada projeto tem uma missão. A tua configuração conhece-a?",
+    t05: "Só leitura. Local. Teu.",
+    h06: "Ferramentas novas todas as semanas. A maioria é ruído.",
+    b06: "As Tendências mostram o que os programadores usam mesmo: repositórios em subida, Hacker News e Reddit... com pré-visualização antes de saíres.",
+    h07: "A fatura chega sempre depois do estrago.",
+    b07: "O Uso mostra os teus tokens por dia, projeto e modelo, lidos dos teus próprios registos. E fica desligado até o ligares.",
+    h08: "Há sete ideias por trás de cada ferramenta de IA. Aprende-as, em quatro línguas.",
+  },
+};
+
+// On-screen captions: shorter than the voice, so they read at a glance.
+export const CAPS: Record<Lang, Record<string, string>> = {
+  en: {
+    f01: "It's not the code.", f02: "It's the setup.", f03: "Too many tools. The wrong ones.", f04: "No destination = days and tokens lost.",
+    f05: "What if the setup came first?", f06: "Everything you have. One live map.", f07: "Goal: a web page → open Kits.",
+    f08: "What you have · what's missing · why", f09: "Step by step, in order.", f10: "Council → your project's passport.",
+    f11: "Fewer errors. Less waste. Faster results.", f12: "Free · open source · on your PC", f13: "REASON ONE · mid-December",
+    h02: "You can't build with tools you can't see.", t02: "Know what you have first.", h03: "Which tools does your project need?",
+    h04: "Right tools, wrong order = still fails.", t04: "Setup first. Then code.", h05: "Does your setup know the mission?",
+    t05: "Read-only · local · yours", h06: "New tools every week. Mostly noise.", b06: "What developers really use.",
+    h07: "The bill arrives after the damage.", b07: "Tokens by day, project and model.", h08: "7 ideas · 4 languages",
+  },
+  pt: {
+    f01: "Não é o código.", f02: "É a configuração.", f03: "Ferramentas a mais. As erradas.", f04: "Sem destino = dias e tokens perdidos.",
+    f05: "E se a configuração viesse primeiro?", f06: "Tudo o que tens. Um mapa vivo.", f07: "Objetivo: uma página web → Kits.",
+    f08: "O que tens · o que falta · porquê", f09: "Passo a passo, por ordem.", f10: "Conselho → o passaporte do projeto.",
+    f11: "Menos erros. Menos desperdício. Mais rápido.", f12: "Grátis · open source · no teu PC", f13: "REASON ONE · meados de dezembro",
+    h02: "Não constróis com o que não vês.", t02: "Primeiro, sabe o que tens.", h03: "De que precisa o teu projeto?",
+    h04: "Certas, mas fora de ordem = falha.", t04: "Configuração primeiro. Depois código.", h05: "A configuração conhece a missão?",
+    t05: "Só leitura · local · teu", h06: "Ferramentas novas. Quase tudo ruído.", b06: "O que os programadores usam mesmo.",
+    h07: "A fatura chega depois do estrago.", b07: "Tokens por dia, projeto e modelo.", h08: "7 ideias · 4 línguas",
+  },
+};

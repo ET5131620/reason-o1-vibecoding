@@ -1,0 +1,234 @@
+{
+  "version": 2,
+  "llm_runtimes": [
+    {
+      "n": "Ollama",
+      "r": "ollama/ollama",
+      "p": "A forma mais simples de correr modelos no PC",
+      "dl": "https://ollama.com/download"
+    },
+    {
+      "n": "LM Studio",
+      "r": "lmstudio-ai/lms",
+      "p": "App com interface para descarregar e conversar com modelos",
+      "dl": "https://lmstudio.ai"
+    },
+    {
+      "n": "llama.cpp",
+      "r": "ggml-org/llama.cpp",
+      "p": "O motor por baixo de quase tudo; corre em CPU",
+      "dl": "https://github.com/ggml-org/llama.cpp/releases"
+    },
+    {
+      "n": "Jan",
+      "r": "janhq/jan",
+      "p": "Alternativa aberta ao ChatGPT, 100% local",
+      "dl": "https://jan.ai"
+    },
+    {
+      "n": "Open WebUI",
+      "r": "open-webui/open-webui",
+      "p": "Interface web para o Ollama e APIs",
+      "dl": "https://github.com/open-webui/open-webui"
+    },
+    {
+      "n": "vLLM",
+      "r": "vllm-project/vllm",
+      "p": "Servir modelos com GPU, em produção",
+      "dl": "https://github.com/vllm-project/vllm"
+    },
+    {
+      "n": "LocalAI",
+      "r": "mudler/LocalAI",
+      "p": "API compatível com OpenAI, local",
+      "dl": "https://localai.io"
+    }
+  ],
+  "llm_models": [
+    {
+      "n": "Qwen",
+      "by": "Alibaba",
+      "p": "Família aberta forte em código e multilíngue",
+      "dl": "https://ollama.com/library/qwen3"
+    },
+    {
+      "n": "Llama",
+      "by": "Meta",
+      "p": "Família aberta de uso geral",
+      "dl": "https://ollama.com/library/llama3.2"
+    },
+    {
+      "n": "Gemma",
+      "by": "Google",
+      "p": "Modelos leves que correm em portáteis",
+      "dl": "https://ollama.com/library/gemma3"
+    },
+    {
+      "n": "Mistral",
+      "by": "Mistral AI",
+      "p": "Modelos europeus, eficientes",
+      "dl": "https://ollama.com/library/mistral"
+    },
+    {
+      "n": "DeepSeek",
+      "by": "DeepSeek",
+      "p": "Modelos de raciocínio abertos",
+      "dl": "https://ollama.com/library/deepseek-r1"
+    },
+    {
+      "n": "Phi",
+      "by": "Microsoft",
+      "p": "Pequenos, bons para CPU",
+      "dl": "https://ollama.com/library/phi4"
+    }
+  ],
+  "llm_cloud": [
+    {
+      "n": "Claude",
+      "by": "Anthropic",
+      "p": "Código, escrita e agentes. Claude Code no terminal",
+      "url": "https://claude.ai"
+    },
+    {
+      "n": "ChatGPT / Codex",
+      "by": "OpenAI",
+      "p": "Conversa, imagem e o agente Codex",
+      "url": "https://chatgpt.com"
+    },
+    {
+      "n": "Gemini",
+      "by": "Google",
+      "p": "Contexto longo e integração Google",
+      "url": "https://gemini.google.com"
+    },
+    {
+      "n": "Cursor",
+      "by": "Anysphere",
+      "p": "Editor de código com agentes",
+      "url": "https://cursor.com"
+    }
+  ],
+  "agent_tools": [
+    {
+      "n": "Claude Code",
+      "r": "anthropics/claude-code",
+      "p": "Agente de código no terminal (Anthropic)"
+    },
+    {
+      "n": "Codex CLI",
+      "r": "openai/codex",
+      "p": "Agente de código no terminal (OpenAI)"
+    },
+    {
+      "n": "Gemini CLI",
+      "r": "google-gemini/gemini-cli",
+      "p": "Agente de código no terminal (Google)"
+    },
+    {
+      "n": "Cline",
+      "r": "cline/cline",
+      "p": "Agente dentro do VS Code"
+    },
+    {
+      "n": "Continue",
+      "r": "continuedev/continue",
+      "p": "Assistente aberto para editores"
+    },
+    {
+      "n": "Aider",
+      "r": "Aider-AI/aider",
+      "p": "Programação a pares no terminal, com git"
+    }
+  ],
+  "skill_sources": [
+    {
+      "n": "Anthropic Skills",
+      "r": "anthropics/skills",
+      "p": "Skills oficiais e o modelo de criação"
+    },
+    {
+      "n": "Superpowers",
+      "r": "obra/superpowers",
+      "p": "Skills de método para agentes de código"
+    },
+    {
+      "n": "Awesome Claude Skills",
+      "r": "travisvn/awesome-claude-skills",
+      "p": "Lista comunitária de skills"
+    }
+  ],
+  "mcp_sources": [
+    {
+      "n": "Servidores MCP de referência",
+      "r": "modelcontextprotocol/servers",
+      "p": "Oficiais e lista da comunidade"
+    },
+    {
+      "n": "Registo MCP oficial",
+      "r": "modelcontextprotocol/registry",
+      "p": "Diretório público de servidores MCP"
+    },
+    {
+      "n": "Awesome MCP servers",
+      "r": "punkpeye/awesome-mcp-servers",
+      "p": "Lista comunitária enorme"
+    },
+    {
+      "n": "Especificação MCP",
+      "r": "modelcontextprotocol/modelcontextprotocol",
+      "p": "Como o protocolo funciona"
+    }
+  ],
+  "api_routers": [
+    {
+      "n": "OmniRoute",
+      "r": "cheaper-inference/OmniRoute",
+      "p": "Um só endpoint local para centenas de fornecedores, muitos com camada grátis. Troca sozinho quando um falha ou esgota, e comprime tokens.",
+      "porta": "20128",
+      "destaque": true
+    },
+    {
+      "n": "Claude Code Router",
+      "r": "musistudio/claude-code-router",
+      "p": "Põe o Claude Code a usar outros modelos (DeepSeek, Gemini, OpenRouter…) por regras.",
+      "porta": "3458"
+    },
+    {
+      "n": "LiteLLM",
+      "r": "BerriAI/litellm",
+      "p": "Gateway com formato OpenAI para 100+ APIs, com orçamentos por chave. Para equipas e apps."
+    },
+    {
+      "n": "Portkey Gateway",
+      "r": "Portkey-AI/gateway",
+      "p": "Gateway rápido com guardrails e encaminhamento."
+    },
+    {
+      "n": "CLIProxyAPI",
+      "r": "router-for-me/CLIProxyAPI",
+      "p": "Expõe as tuas subscrições de agentes (Codex, Claude Code) como API compatível."
+    }
+  ],
+  "free_apis": [
+    {
+      "n": "public-apis",
+      "r": "public-apis/public-apis",
+      "p": "A maior lista de APIs públicas grátis, por categoria (tempo, mapas, finanças, imagens…)."
+    },
+    {
+      "n": "Guia de camadas grátis do OmniRoute",
+      "url": "https://github.com/cheaper-inference/OmniRoute/blob/main/docs/getting-started/FREE-TIERS-GUIDE.md",
+      "p": "Que fornecedores de LLM têm camada grátis e com que condições."
+    },
+    {
+      "n": "Ollama (local)",
+      "r": "ollama/ollama",
+      "p": "Grátis para sempre: o modelo corre no teu PC."
+    },
+    {
+      "n": "OpenRouter",
+      "url": "https://openrouter.ai/models?max_price=0",
+      "p": "Modelos com preço 0 (limites por dia; confirma no site)."
+    }
+  ]
+}

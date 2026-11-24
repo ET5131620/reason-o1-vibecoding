@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>REASON O1 / VibeCoding — know your AI stack</title>
+<meta name="description" content="Free, open-source app that maps every model, agent, skill, MCP server and CLI on your PC and tells you what each project is missing. Runs locally. MIT.">
+<meta property="og:title" content="REASON O1 / VibeCoding — know your AI stack">
+<meta property="og:description" content="Map your AI tools, get curated kits per goal, see your token usage. Free, local, MIT. A head start before REASON ONE.">
+<meta property="og:image" content="assets/shot-overview.webp">
+<meta name="theme-color" content="#02040a">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* "Big Bang" palette: deep-space blue, white light, cool greys. One warm note, used only at the core of the burst. */
+  --bg:#02040a;--bg2:#060a14;--panel:rgba(10,14,24,.74);--line:rgba(220,232,255,.09);--line2:rgba(200,220,255,.2);
+  --txt:#f5f8fc;--mut:#a6b0c0;--dim:#6a7486;--cyan:#6ea8ff;--vio:#b9c6dc;--pink:#dfe8f7;--amber:#9cc3ff;--green:#8fd3ff;
+  --blue:#2f6bff;--ice:#cfe0ff;--core:#fff3e2;
+  --f:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --ease:cubic-bezier(.2,.8,.2,1);--max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--txt);font:17px/1.6 var(--f);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono)}
+.label{font:600 12px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--cyan)}
+h1,h2,h3{line-height:1.08;letter-spacing:-.02em;margin:0}
+h2{font-size:clamp(30px,4.2vw,50px);font-weight:700}
+h3{font-size:20px;font-weight:600}
+p{margin:0}
+.lead{color:var(--mut);font-size:clamp(17px,1.6vw,20px);max-width:62ch}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:#02040a;padding:8px 14px;border-radius:8px;z-index:99}
+.skip:focus{left:12px}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+
+/* space behind everything */
+#sky{position:fixed;inset:0;z-index:-1;width:100%;height:100%}
+.glow{position:fixed;inset:-20% -10% auto;height:80vh;z-index:-1;pointer-events:none;
+  background:radial-gradient(40% 50% at 75% 15%,rgba(47,107,255,.13),transparent 70%),radial-gradient(35% 45% at 15% 5%,rgba(160,190,230,.07),transparent 70%)}
+/* the burst: a white core and a blue horizon rising behind the hero, like light at the first second */
+.bang{position:absolute;left:50%;top:clamp(330px,42vw,440px);width:min(1600px,190vw);aspect-ratio:2.4;transform:translateX(-50%);z-index:-1;pointer-events:none}
+.bang::before{content:"";position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(255,243,226,1) 0,rgba(207,224,255,.75) 5%,rgba(110,168,255,.45) 14%,rgba(47,107,255,.26) 28%,rgba(20,50,140,.12) 46%,transparent 68%);
+  filter:blur(6px);animation:breathe 9s ease-in-out infinite}
+.bang::after{content:"";position:absolute;left:4%;right:4%;top:49.6%;height:1.5px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,rgba(207,224,255,.65) 30%,#fff 50%,rgba(207,224,255,.65) 70%,transparent);box-shadow:0 0 24px rgba(160,200,255,.8)}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.92}50%{transform:scale(1.06);opacity:1}}
+
+/* header */
+header{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(4,6,12,.62);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:22px;height:66px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
+.brand img{height:20px;width:auto}
+.brand span{font:500 12px var(--mono);letter-spacing:.2em;color:var(--mut)}
+.nav a.l{text-decoration:none;color:var(--mut);font-size:14.5px}
+.nav a.l:hover{color:var(--txt)}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 20px;border-radius:99px;font:600 15px var(--f);text-decoration:none;border:1px solid var(--line2);background:rgba(10,16,30,.6);color:var(--txt);cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s,border-color .25s}
+.btn:hover{transform:translateY(-2px);border-color:var(--cyan)}
+.btn.pri{background:linear-gradient(180deg,#fff,#dfe8f7);color:#02040a;border:0;box-shadow:0 10px 34px rgba(47,107,255,.35),inset 0 -1px 0 rgba(0,0,0,.12)}
+.btn.pri:hover{box-shadow:0 14px 48px rgba(110,168,255,.55)}
+.btn svg{width:18px;height:18px}
+.nav .btn{padding:9px 16px;font-size:14px}
+@media (max-width:860px){.nav a.l{display:none}}
+@media (max-width:520px){.brand span{display:none}.wrap{padding:0 18px}}
+
+/* hero */
+.hero{padding:clamp(54px,9vw,110px) 0 40px;text-align:center;overflow:hidden}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:26px}
+.chip{font:500 12.5px var(--mono);padding:6px 12px;border:1px solid var(--line2);border-radius:99px;color:var(--mut);background:rgba(10,16,30,.55)}
+.chip b{color:var(--ice);font-weight:600;text-shadow:0 0 10px var(--cyan)}
+.hero h1{font-size:clamp(42px,7.4vw,92px);font-weight:700;max-width:13ch;margin:0 auto}
+.hero h1 em{font-style:normal;background:linear-gradient(100deg,#fff 0%,var(--ice) 35%,var(--cyan) 70%,var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{margin:24px auto 0;text-align:center}
+.cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:34px}
+.req{margin-top:16px;color:var(--dim);font:13px var(--mono)}
+.shot{position:relative;margin:64px auto 0;margin-inline:auto;max-width:1100px;border-radius:18px;padding:1px;
+  background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(110,168,255,.28) 30%,rgba(200,220,255,.08));box-shadow:0 -30px 120px rgba(47,107,255,.25),0 40px 120px rgba(0,0,0,.6)}
+.shot img{border-radius:17px;width:100%;height:auto}
+.shot::after{content:"";position:absolute;inset:auto 8% -40px;height:80px;background:radial-gradient(50% 50% at 50% 0,rgba(110,168,255,.3),transparent 70%);filter:blur(20px);z-index:-1}
+
+section{padding:clamp(70px,10vw,130px) 0;position:relative}
+.head{max-width:760px;margin-bottom:46px}
+.head h2{margin:12px 0 16px}
+
+/* why */
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px;position:relative;overflow:hidden}
+.card .n{font:600 13px var(--mono);color:var(--dim)}
+.card h3{margin:14px 0 10px}
+.card p{color:var(--mut);font-size:15.5px}
+.card .fix{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line2);color:var(--txt);font-size:15px}
+.card .fix b{color:var(--cyan);font:600 12px var(--mono);letter-spacing:.12em;display:block;margin-bottom:4px}
+@media (max-width:900px){.why{grid-template-columns:1fr}}
+
+/* features: alternating rows with real screenshots */
+.feat{position:relative;margin-bottom:clamp(64px,9vw,130px)}
+.feat .fx{border-radius:20px;overflow:hidden;border:1px solid var(--line2);box-shadow:0 -20px 90px rgba(47,107,255,.12),0 40px 110px rgba(0,0,0,.65)}
+.feat .fx img{width:100%;height:auto}
+.feat .over{position:absolute;left:clamp(18px,3vw,40px);bottom:clamp(18px,3vw,40px);max-width:500px;padding:clamp(22px,2.6vw,34px);
+  background:rgba(2,4,10,.82);-webkit-backdrop-filter:blur(18px) saturate(1.2);backdrop-filter:blur(18px) saturate(1.2);border:1px solid var(--line2);border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.65)}
+.feat.r .over{left:auto;right:clamp(18px,3vw,40px)}
+.feat h3{font-size:clamp(26px,3vw,38px);margin:12px 0 14px;text-transform:uppercase;letter-spacing:-.01em}
+.feat .over .lead{font-size:16.5px}
+.feat ul{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:9px}
+.feat li{padding-left:22px;position:relative;color:var(--mut);font-size:15.5px}
+.feat li::before{content:"";position:absolute;left:2px;top:10px;width:7px;height:7px;border-radius:50%;background:var(--ice);box-shadow:0 0 10px var(--cyan)}
+.feat li b{color:var(--txt);font-weight:600}
+@media (max-width:900px){.feat .over,.feat.r .over{position:relative;left:auto;right:auto;bottom:auto;max-width:none;margin:-34px 12px 0}}
+.mini{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.mini .card{padding:20px}
+.mini .card h3{font-size:17px;margin:10px 0 6px}
+.mini .card p{font-size:14.5px}
+.mini svg{width:26px;height:26px;color:var(--c)}
+@media (max-width:1000px){.mini{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.mini{grid-template-columns:1fr}}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+.step{border-left:2px solid var(--line2);padding:6px 0 6px 22px}
+.step .k{font:600 13px var(--mono);color:var(--cyan)}
+.step h3{margin:8px 0 8px}
+.step p{color:var(--mut);font-size:15.5px}
+pre{margin:34px 0 0;background:#04070e;border:1px solid var(--line2);border-radius:14px;padding:20px 22px;overflow-x:auto;font:14.5px/1.7 var(--mono);color:#cfe6ff;position:relative}
+pre .c{color:var(--dim)}
+.copy{position:absolute;top:12px;right:12px;font:600 12px var(--mono);padding:7px 12px;border-radius:8px;border:1px solid var(--line2);background:rgba(10,16,30,.8);color:var(--txt);cursor:pointer}
+@media (max-width:900px){.steps{grid-template-columns:1fr}}
+
+/* videos */
+.vids{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.vids-note{margin-top:20px;color:var(--dim);font-size:14px}
+.film{margin:0;border-radius:20px;overflow:hidden;border:1px solid var(--line2);box-shadow:0 -30px 110px rgba(47,107,255,.18),0 40px 110px rgba(0,0,0,.65);background:#04070e}
+.film video{width:100%;aspect-ratio:16/9;display:block;background:#04070e}
+.vids-note a{color:var(--mut)}
+.vid{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#050913}
+.vid video{width:100%;aspect-ratio:16/9;display:block;background:#050913}
+.vid figcaption{padding:12px 14px;font-size:14px;color:var(--mut)}
+.vid figcaption b{color:var(--txt);display:block;font-weight:600}
+@media (max-width:1000px){.vids{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.vids{grid-template-columns:1fr}}
+
+/* privacy band */
+.band{display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:start;background:linear-gradient(140deg,rgba(47,107,255,.1),rgba(255,255,255,.02));border:1px solid var(--line2);border-radius:22px;padding:clamp(26px,4vw,48px)}
+.band ul{margin:0;padding:0;list-style:none;display:grid;gap:14px}
+.band li{display:flex;gap:12px;color:var(--mut)}
+.band li svg{flex:none;width:20px;height:20px;color:var(--green);margin-top:3px}
+.band li b{color:var(--txt)}
+@media (max-width:900px){.band{grid-template-columns:1fr}}
+
+/* REASON ONE */
+.one{text-align:center;border-radius:26px;padding:clamp(40px,7vw,84px) 24px;border:1px solid rgba(207,224,255,.22);overflow:hidden;position:relative;
+  background:radial-gradient(42% 26% at 50% 100%,rgba(255,243,226,.5),rgba(110,168,255,.22) 40%,transparent 75%),radial-gradient(70% 70% at 50% 0,rgba(47,107,255,.12),transparent 70%),var(--bg2)}
+.one .soon{display:inline-block;font:600 12px var(--mono);letter-spacing:.2em;color:#fff;border:1px solid rgba(207,224,255,.4);padding:7px 14px;border-radius:99px}
+.one h2{margin:22px auto 18px;max-width:18ch}
+.one .lead{margin:0 auto}
+.one .date{margin-top:28px;font:600 clamp(22px,3vw,30px) var(--mono);letter-spacing:.04em}
+
+.thanks{text-align:center;max-width:760px;margin:0 auto}
+.thanks h2{margin:14px 0 18px}
+.motto{margin-top:30px;font:600 13px var(--mono);letter-spacing:.22em;color:var(--dim)}
+
+footer{border-top:1px solid var(--line);padding:34px 0 48px;color:var(--dim);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+footer a{color:var(--mut)}
+
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bang::before{animation:none}.rv{opacity:1;transform:none;transition:none}.btn{transition:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<canvas id="sky" aria-hidden="true"></canvas><div class="glow" aria-hidden="true"></div>
+
+<header><div class="wrap nav">
+  <a class="brand" href="#top" aria-label="REASON O1 / VibeCoding — home"><img src="assets/wordmark.svg" alt="REASON | 01" width="128" height="20"><span>/ VIBECODING</span></a>
+  <a class="l" href="#why">Why</a><a class="l" href="#features">Features</a><a class="l" href="#start">Get started</a><a class="l" href="#videos">Videos</a><a class="l" href="#one">REASON ONE</a>
+  <a class="btn" href="https://github.com/ET5131620/reason-o1-vibecoding"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+</div></header>
+
+<main id="main">
+<section class="hero" id="top"><div class="bang" aria-hidden="true"></div><div class="wrap">
+  <div class="chips rv"><span class="chip"><b>●</b> Free forever</span><span class="chip">Open source · MIT</span><span class="chip">Runs on your PC</span><span class="chip">EN · PT · FR · ES</span></div>
+  <h1 class="rv">Know your AI stack. <em>Build with less guessing.</em></h1>
+  <p class="lead rv">REASON O1 maps every model, agent, skill, MCP server and CLI on your machine — then tells you, in plain words, what each project is missing and why.</p>
+  <div class="cta rv">
+    <a class="btn pri" href="https://github.com/ET5131620/reason-o1-vibecoding"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>Get it on GitHub</a>
+    <a class="btn" href="#videos"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>Watch the film</a>
+  </div>
+  <p class="req rv">Python 3.10+ · no dependencies · Windows, macOS, Linux</p>
+  <figure class="shot rv"><img src="assets/shot-overview.webp" width="1440" height="900" alt="REASON O1 overview: a constellation map of AI apps, skills, MCP servers, CLIs, local LLMs and projects on one PC, with counters and the kit map below."></figure>
+</div></section>
+
+<section id="why"><div class="wrap">
+  <div class="head rv"><div class="label">Why it exists</div><h2>Vibe coding doesn't fail on code. It fails on setup.</h2><p class="lead">Most lost hours aren't spent writing code. They go on three quieter problems — the ones nobody shows you in the demo.</p></div>
+  <div class="why">
+    <article class="card rv"><div class="n">01</div><h3>You don't know what you already have</h3><p>Skills in one folder, MCP servers in three configs, models you pulled months ago. You install a tool you already own.</p><div class="fix"><b>REASON O1</b>One live map of everything installed, refreshed every time it opens.</div></article>
+    <article class="card rv"><div class="n">02</div><h3>You pick the wrong tool for the job</h3><p>Thousands of repos, each promising everything. Choosing well takes research you don't have time for.</p><div class="fix"><b>REASON O1</b>18 curated kits per goal — 3 essentials, 7 complete — each with the reason it's there.</div></article>
+    <article class="card rv"><div class="n">03</div><h3>You burn tokens without seeing it</h3><p>Context grows, sessions repeat, the expensive model does the simple work. The bill arrives later.</p><div class="fix"><b>REASON O1</b>Token usage by day, project and model, read from your own logs — plus how to spend less.</div></article>
+  </div>
+</div></section>
+
+<section id="features"><div class="wrap">
+  <div class="head rv"><div class="label">What it does</div><h2>A control room for your AI toolbox.</h2><p class="lead">It reads, it explains, it advises. It never installs or runs anything by itself.</p></div>
+
+  <div class="feat rv"><div class="fx"><img src="assets/shot-kit.webp" width="1440" height="900" loading="lazy" alt="The Agents and MCP kit: install and prompt buttons, tabs for tools, step by step and pairings, and a table of tools with stars, licence, status and a Get button."></div>
+    <div class="over"><div class="label">Tool kits</div><h3>The right set for each goal — with the why.</h3><p class="lead">Agents, web design, back-end, video, security, RAG, CAD, monetising and more. Ranked by GitHub stars, explained in one line each.</p>
+      <ul><li><b>Essential (3) or Complete (7)</b> — start small, grow when you need to.</li><li><b>Goes well with</b> — which tools pair best, and why.</li><li><b>One-click Get</b> — GitHub, ZIP, <span class="mono">git clone</span> or a prompt for your agent.</li></ul></div>
+  </div>
+
+  <div class="feat rv"><div class="fx"><img src="assets/shot-trends.webp" width="1440" height="900" loading="lazy" alt="Trends view: the most-talked-about tools, sets used together, and repositories rising on GitHub."></div>
+    <div class="over"><div class="label">Trends</div><h3>What the community uses this week.</h3><p class="lead">Rising GitHub repos, Hacker News and Reddit — public sources, no keys. Every item opens a preview first, so you decide before you leave.</p>
+      <ul><li><b>Most talked about</b> tools and the <b>pairs</b> that show up together.</li><li><b>Research prompt</b> for your agent on TikTok, Instagram and Facebook.</li></ul></div>
+  </div>
+
+  <div class="feat r rv"><div class="fx"><img src="assets/shot-learn.webp" width="1440" height="900" loading="lazy" alt="Learn view: an animated step-by-step infographic explaining how an LLM turns a request into tokens, runs the model and returns an answer."></div>
+    <div class="over"><div class="label">Learn</div><h3>The seven ideas behind every AI tool.</h3><p class="lead">LLM, MCP, CLI, skill, agent, API and RAG — each with a clickable, animated path. Plus the free official courses from Anthropic and OpenAI.</p>
+      <ul><li><b>Hints that appear when you seem lost</b> — and stay quiet when you don't.</li><li><b>Skill builder</b>: four questions, one ready <span class="mono">SKILL.md</span>.</li></ul></div>
+  </div>
+
+  <div class="mini">
+    <article class="card rv" style="--c:var(--pink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4.5"/><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(120 12 12)"/></svg><h3>Council</h3><p>Reads a project, writes its passport and lists what it needs.</p></article>
+    <article class="card rv" style="--c:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 18 4-6"/><circle cx="12" cy="18" r="1"/></svg><h3>Usage</h3><p>Tokens by day, project and model; Codex limits; OpenRouter balance.</p></article>
+    <article class="card rv" style="--c:var(--cyan)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M9 2v6M15 2v6M6 8h12v3a6 6 0 0 1-12 0zM12 17v5"/></svg><h3>MCP server</h3><p>Your Claude Code or Codex learns your inventory and kits. No API key.</p></article>
+    <article class="card rv" style="--c:var(--vio)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M12 14V9.5M8.5 7.5a5 5 0 0 1 7 0M5.6 4.6a9 9 0 0 1 12.8 0"/></svg><h3>API router</h3><p>Free APIs and OmniRoute: one local address for many models.</p></article>
+  </div>
+</div></section>
+
+<section id="start"><div class="wrap">
+  <div class="head rv"><div class="label">Get started</div><h2>Two minutes. One command.</h2></div>
+  <div class="steps">
+    <div class="step rv"><div class="k">01 · RUN</div><h3>Clone and start</h3><p>Standard library only — nothing to install. The dashboard opens in your browser, and can be installed as an app.</p></div>
+    <div class="step rv"><div class="k">02 · SCAN</div><h3>See your map</h3><p>A short first-run setup: name (optional), folders, what it may read, the terms, a starter pack and free courses.</p></div>
+    <div class="step rv"><div class="k">03 · BUILD</div><h3>Ask, pick, ship</h3><p>Open a kit, ask the Council about a project, or connect it to your agent over MCP.</p></div>
+  </div>
+  <pre class="rv" id="cmd"><button class="copy" type="button" data-copy="#cmdtxt">Copy</button><code id="cmdtxt">git clone https://github.com/ET5131620/reason-o1-vibecoding.git
+cd reason-o1-vibecoding
+python reason_o1.py</code>
+<span class="c"># optional: give your agent the map</span>
+<code>claude mcp add reason-o1 --scope user -- python /path/to/reason_o1.py mcp</code></pre>
+</div></section>
+
+<section id="videos"><div class="wrap">
+  <div class="head rv"><div class="label">The film</div><h2>Setup first. Then code.</h2><p class="lead">A short narrated film: the problem, the turn, and the app at work, click by click. Turn the sound on.</p></div>
+  <figure class="film rv"><video src="videos/film.mp4" poster="videos/film.jpg" playsinline controls preload="none" aria-label="REASON O1 launch film, narrated, about 75 seconds"></video></figure>
+  <p class="vids-note">Também em português: <a href="videos/pt/film.mp4" lang="pt">ver o filme</a>.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="band rv">
+    <div><div class="label" style="color:var(--green)">Local first</div><h2 style="margin:12px 0 16px">Your PC. Your data. Your yes.</h2><p class="lead">It only advises. What you install — and its security — stays your call.</p></div>
+    <ul>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><b>Runs on 127.0.0.1 only</b>, with a fresh session token on every start.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><b>Reads names, counts and dates</b> — never keys, environment variables or conversation content.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><b>Never runs downloaded code.</b> You get the commands and a request for your agent, which asks first.</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><b>Usage reading is off</b> until you turn it on.</span></li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="one"><div class="wrap">
+  <div class="one rv">
+    <span class="soon">COMING MID-DECEMBER</span>
+    <h2>REASON ONE is the studio. VibeCoding is your head start.</h2>
+    <p class="lead">REASON ONE is an agent-driven software engineering studio — project map, orchestration and cost control — launching as a closed-source product. REASON O1 is the free part, for the community. Everything you set up here carries over.</p>
+    <div class="date">DECEMBER · 2026</div>
+  </div>
+</div></section>
+
+<section><div class="wrap thanks rv">
+  <div class="label">A thank-you</div>
+  <h2>Built on what the community shared.</h2>
+  <p class="lead" style="margin:0 auto">I learned a lot from people who put their code in the open. This is my way of giving back. If it helps you, star the repo, open an issue, send a pull request — and say you started with REASON O1.</p>
+  <div class="cta"><a class="btn pri" href="https://github.com/ET5131620/reason-o1-vibecoding">Star it on GitHub</a></div>
+  <div class="motto">THINK FIRST · THEN STUDY · THEN LAUNCH</div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <span>Made with gratitude by <b style="color:var(--txt)">531620ET · Godmode</b> · MIT licence</span>
+  <span><a href="https://github.com/ET5131620/reason-o1-vibecoding/blob/main/TERMS.md">Terms</a> · <a href="https://github.com/ET5131620/reason-o1-vibecoding/blob/main/README.md">README</a> · <a href="https://github.com/ET5131620/reason-o1-vibecoding/issues">Issues</a></span>
+</div></footer>
+
+<script>
+"use strict";
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* reveal on scroll */
+const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); ro.unobserve(e.target); } }), {threshold: .12});
+document.querySelectorAll(".rv").forEach((el, i) => { el.style.transitionDelay = (i % 4) * 70 + "ms"; ro.observe(el); });
+
+/* copy the start commands */
+document.addEventListener("click", async e => { const b = e.target.closest("[data-copy]"); if (!b) return;
+  const t = document.querySelector(b.dataset.copy).textContent;
+  try { await navigator.clipboard.writeText(t); b.textContent = "Copied"; } catch { b.textContent = "Select and copy"; }
+  setTimeout(() => b.textContent = "Copy", 1800); });
+
+/* starfield with a few linked "nodes" — the app's constellation, quietly */
+(() => { const c = document.getElementById("sky"), x = c.getContext("2d"); let st = [], nd = [], W, H;
+  const size = () => { const d = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; c.width = W * d; c.height = H * d; x.setTransform(d, 0, 0, d, 0, 0);
+    st = Array.from({length: Math.round(W * H / 9000)}, () => ({x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.2 + .2, p: Math.random() * 6}));
+    nd = Array.from({length: 7}, (_, i) => ({x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .12, vy: (Math.random() - .5) * .12, c: ["#ffffff", "#6ea8ff", "#cfe0ff", "#2f6bff", "#a6b0c0"][i % 5]})); };
+  size(); addEventListener("resize", size);
+  const draw = t => { x.clearRect(0, 0, W, H);
+    for (const s of st) { x.globalAlpha = .2 + .5 * Math.abs(Math.sin(t / 2000 + s.p)); x.fillStyle = s.r > 1 ? "#ffffff" : "#c9d8f0"; x.beginPath(); x.arc(s.x, s.y, s.r, 0, 7); x.fill(); }
+    x.globalAlpha = 1;
+    for (const n of nd) { n.x = (n.x + n.vx + W) % W; n.y = (n.y + n.vy + H) % H; }
+    for (let i = 0; i < nd.length; i++) for (let j = i + 1; j < nd.length; j++) { const a = nd[i], b = nd[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d < 360) { x.strokeStyle = `rgba(190,210,240,${.1 * (1 - d / 360)})`; x.lineWidth = 1; x.beginPath(); x.moveTo(a.x, a.y); x.lineTo(b.x, b.y); x.stroke(); } }
+    for (const n of nd) { x.fillStyle = n.c; x.shadowColor = n.c; x.shadowBlur = 14; x.beginPath(); x.arc(n.x, n.y, 2.4, 0, 7); x.fill(); x.shadowBlur = 0; }
+    if (!RM) requestAnimationFrame(draw); };
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
