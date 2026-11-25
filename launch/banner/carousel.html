@@ -1,0 +1,88 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>REASON O1 carousel</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* 6 slides, 1080x1350 (Instagram / LinkedIn portrait). ?lang=pt for Portuguese. Each .s is screenshotted on its own. */
+:root{--bg:#02040a;--txt:#f5f8fc;--mut:#a6b0c0;--dim:#6a7486;--blue:#2f6bff;--ice:#cfe0ff;--core:#fff3e2;--line:rgba(220,232,255,.12);--miss:#ffb86b;--have:#8fd3ff}
+*{margin:0;box-sizing:border-box}
+html{scrollbar-width:none}::-webkit-scrollbar{display:none}body{background:#000;font-family:"Space Grotesk",system-ui,sans-serif;color:var(--txt)}
+.s{width:1080px;height:1350px;position:relative;overflow:hidden;background:var(--bg);margin-bottom:20px}
+.s canvas{position:absolute;inset:0}
+.bang{position:absolute;width:1300px;height:1300px;left:50%;top:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,243,226,.5) 0,rgba(207,224,255,.2) 8%,rgba(47,107,255,.14) 24%,rgba(2,4,10,0) 60%)}
+.hz{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,rgba(2,4,10,0),rgba(47,107,255,.4) 25%,rgba(255,243,226,.9) 50%,rgba(47,107,255,.4) 75%,rgba(2,4,10,0))}
+.top{position:absolute;left:80px;right:80px;top:72px;display:flex;justify-content:space-between;align-items:center;z-index:3}
+.top img{height:30px}.top span{font:500 20px "JetBrains Mono",monospace;color:var(--dim);letter-spacing:.12em}
+.body{position:absolute;left:80px;right:80px;z-index:3}
+.k{font:500 22px "JetBrains Mono",monospace;letter-spacing:.2em;color:var(--ice);text-transform:uppercase}
+h1{font-size:104px;line-height:.98;font-weight:700;letter-spacing:-.03em;margin-top:22px}
+h2{font-size:78px;line-height:1.02;font-weight:700;letter-spacing:-.025em;margin-top:20px}
+em{font-style:normal;color:var(--ice)}
+p{font-size:34px;line-height:1.38;color:var(--mut);margin-top:26px}
+.shot{position:absolute;left:80px;right:80px;border-radius:22px;border:1px solid rgba(200,220,255,.22);box-shadow:0 50px 110px rgba(0,0,0,.75),0 0 90px rgba(47,107,255,.2);overflow:hidden;z-index:2}
+.shot img{display:block;width:100%;height:100%;object-fit:cover;object-position:left top}
+.list{margin-top:44px;display:grid;gap:22px}
+.row{display:flex;gap:26px;align-items:flex-start;padding:30px 34px;border:1px solid var(--line);border-radius:22px;background:rgba(10,14,24,.72)}
+.row b{font:500 26px "JetBrains Mono",monospace;color:var(--blue);min-width:48px}
+.row div{font-size:33px;line-height:1.3}.row small{display:block;color:var(--mut);font-size:27px;margin-top:6px}
+.chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:40px}
+.chip{font:500 26px "JetBrains Mono",monospace;padding:14px 22px;border:1px solid var(--line);border-radius:999px;background:rgba(10,14,24,.75)}
+.tag{display:inline-block;font:500 24px "JetBrains Mono",monospace;padding:8px 18px;border-radius:999px;border:1.5px solid}
+.have{color:var(--have);border-color:rgba(143,211,255,.5)}.miss{color:var(--miss);border-color:rgba(255,184,107,.6)}
+.foot{position:absolute;left:80px;right:80px;bottom:64px;display:flex;justify-content:space-between;font:500 22px "JetBrains Mono",monospace;color:var(--dim);z-index:3}
+.cta{display:inline-block;margin-top:46px;background:#fff;color:#02040a;font-weight:700;font-size:36px;padding:26px 40px;border-radius:999px}
+.logo{width:170px;height:170px;filter:drop-shadow(0 0 40px rgba(47,107,255,.5))}
+.fadeb{position:absolute;left:0;right:0;bottom:0;height:420px;background:linear-gradient(0deg,var(--bg) 30%,rgba(2,4,10,0));z-index:2}
+</style></head><body>
+<script>
+const pt = new URLSearchParams(location.search).get('lang') === 'pt';
+const T = (en, p) => pt ? p : en;
+const A = '../../docs/assets/readme/';
+const hdr = n => `<div class="top"><img src="wordmark-clear.svg" alt=""><span>${n} / 6</span></div>`;
+const foot = `<div class="foot"><span>REASON O1 / VibeCoding</span><span>${T('Free · MIT · local', 'Grátis · MIT · local')}</span></div>`;
+const S = [
+ // 1 hook
+ `<div class="bang" style="top:34%"></div><div class="hz" style="top:34%"></div>${hdr(1)}
+  <div class="body" style="top:250px;text-align:center"><img class="logo" src="../../docs/assets/logo.svg" alt=""></div>
+  <div class="body" style="top:640px"><div class="k">${T('Vibe coding · the honest part', 'Vibe coding · a parte honesta')}</div>
+  <h1>${T("It's not<br>the code.<br><em>It's the setup.</em>", 'Não é<br>o código.<br><em>É a configuração.</em>')}</h1>
+  <p>${T('Swipe to see the free tool that fixes it →', 'Desliza para ver a ferramenta grátis que resolve isto →')}</p></div>${foot}`,
+ // 2 problem
+ `${hdr(2)}<div class="body" style="top:200px"><div class="k">${T('The problem', 'O problema')}</div>
+  <h2>${T('Too many tools.<br><em>No map.</em>', 'Ferramentas a mais.<br><em>Nenhum mapa.</em>')}</h2>
+  <div class="list">
+   <div class="row"><b>01</b><div>${T("You don't know what you already have", 'Não sabes o que já tens')}<small>${T('Skills in one folder, MCP servers in three configs.', 'Skills numa pasta, servidores MCP em três configurações.')}</small></div></div>
+   <div class="row"><b>02</b><div>${T('You pick the wrong tool', 'Escolhes a ferramenta errada')}<small>${T('Thousands of repos, each promising everything.', 'Milhares de repositórios, todos a prometer tudo.')}</small></div></div>
+   <div class="row"><b>03</b><div>${T('You burn tokens without seeing it', 'Gastas tokens sem dar por isso')}<small>${T('The expensive model does the simple work.', 'O modelo caro faz o trabalho simples.')}</small></div></div>
+  </div></div>${foot}`,
+ // 3 map
+ `${hdr(3)}<div class="body" style="top:200px"><div class="k">${T('01 · The map', '01 · O mapa')}</div>
+  <h2>${T('See everything<br><em>on your PC.</em>', 'Vê tudo o que<br><em>tens no PC.</em>')}</h2>
+  <p>${T('AI apps, skills, MCP servers, CLIs, local models and projects — found automatically.', 'Apps de IA, skills, servidores MCP, CLIs, modelos locais e projetos — encontrados sozinhos.')}</p></div>
+  <div class="shot" style="top:700px;height:500px"><img src="${A}shot-inventory.webp" alt=""></div>${foot}`,
+ // 4 kit
+ `${hdr(4)}<div class="body" style="top:200px"><div class="k">${T('02 · 18 kits', '02 · 18 kits')}</div>
+  <h2>${T('What you have.<br>What\'s missing.<br><em>Why.</em>', 'O que tens.<br>O que falta.<br><em>Porquê.</em>')}</h2>
+  <div style="margin-top:30px;display:flex;gap:14px"><span class="tag have">${T('you have it', 'já tens')}</span><span class="tag miss">${T('missing', 'falta')}</span></div></div>
+  <div class="shot" style="top:720px;height:480px"><img src="${A}shot-kit.webp" alt="" style="transform:scale(1.7);transform-origin:96% 62%"></div>${foot}`,
+ // 5 council
+ `${hdr(5)}<div class="body" style="top:200px"><div class="k">${T('03 · The Council', '03 · O Conselho')}</div>
+  <h2>${T('Point it at<br>a project.<br><em>Get what it needs.</em>', 'Indica um<br>projeto.<br><em>Recebe o que falta.</em>')}</h2></div>
+  <div class="shot" style="top:720px;height:480px"><img src="${A}shot-council.webp" alt="" style="transform:scale(1.3);transform-origin:4% 16%"></div>${foot}`,
+ // 6 cta
+ `<div class="bang" style="top:72%"></div><div class="hz" style="top:72%"></div>${hdr(6)}
+  <div class="body" style="top:200px"><div class="k">${T('Free & open source', 'Grátis e open source')}</div>
+  <h2>${T('Set up first.<br><em>Then code.</em>', 'Primeiro configura.<br><em>Depois programa.</em>')}</h2>
+  <div class="chips"><span class="chip">${T('Free · MIT', 'Grátis · MIT')}</span><span class="chip">${T('Runs on your PC', 'Corre no teu PC')}</span><span class="chip">${T('No API key', 'Sem chave de API')}</span><span class="chip">${T('Never installs by itself', 'Nunca instala sozinho')}</span><span class="chip">MCP · Claude Code · Codex</span></div>
+  <div class="cta">${T('Download on GitHub ↓', 'Descarrega no GitHub ↓')}</div>
+  <p style="font:500 28px 'JetBrains Mono',monospace;color:var(--ice)">github.com/ET5131620/<br>reason-o1-vibecoding</p>
+  <p style="font-size:28px">${T('Link in bio · Save this post for your next project', 'Link na bio · Guarda este post para o próximo projeto')}</p></div>${foot}`
+];
+document.body.innerHTML = S.map((h, i) => `<section class="s" id="s${i + 1}"><canvas width="1080" height="1350"></canvas>${h}</section>`).join('');
+// ?lang=pt&n=3 renders only slide 3, flush at the top (for headless screenshots)
+const only = new URLSearchParams(location.search).get('n');
+if (only) document.querySelectorAll('.s').forEach(s => { if (s.id !== 's' + only) s.remove(); else s.style.margin = '0'; });
+document.querySelectorAll('canvas').forEach((cv, j) => { const c = cv.getContext('2d'); let s = 11 + j; const r = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 380; i++) { const z = r(); c.globalAlpha = .2 + z * .7; c.fillStyle = z > .93 ? '#cfe0ff' : z > .8 ? '#8fb4ff' : '#fff'; c.beginPath(); c.arc(r() * 1080, r() * 1350, z > .96 ? 1.8 : .7 + z * .6, 0, 7); c.fill() } });
+</script>
+</body></html>

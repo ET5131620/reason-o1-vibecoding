@@ -15,3 +15,6 @@ launch/video/out/
 
 # generated sound (python launch/video/voice.py sfx makes them again)
 launch/video/public/sfx/*.wav
+
+# promo images for social networks (posted by hand, not shipped)
+launch/social/

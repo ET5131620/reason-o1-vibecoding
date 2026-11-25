@@ -1,0 +1,3 @@
+# keep the GitHub language bar on the app itself (Python), not the launch film and site
+launch/** linguist-documentation
+docs/** linguist-documentation
