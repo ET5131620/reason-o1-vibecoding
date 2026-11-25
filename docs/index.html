@@ -7,7 +7,11 @@
 <meta name="description" content="Free, open-source app that maps every model, agent, skill, MCP server and CLI on your PC and tells you what each project is missing. Runs locally. MIT.">
 <meta property="og:title" content="REASON O1 / VibeCoding — know your AI stack">
 <meta property="og:description" content="Map your AI tools, get curated kits per goal, see your token usage. Free, local, MIT. A head start before REASON ONE.">
-<meta property="og:image" content="assets/shot-overview.webp">
+<meta property="og:image" content="https://et5131620.github.io/reason-o1-vibecoding/assets/readme/banner.png">
+<meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta property="og:url" content="https://et5131620.github.io/reason-o1-vibecoding/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://et5131620.github.io/reason-o1-vibecoding/assets/readme/banner.png">
 <meta name="theme-color" content="#02040a">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -190,6 +194,7 @@ footer a{color:var(--mut)}
   <p class="lead rv">REASON O1 maps every model, agent, skill, MCP server and CLI on your machine — then tells you, in plain words, what each project is missing and why.</p>
   <div class="cta rv">
     <a class="btn pri" href="https://github.com/ET5131620/reason-o1-vibecoding"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>Get it on GitHub</a>
+    <a class="btn" href="https://github.com/ET5131620/reason-o1-vibecoding/archive/refs/tags/v1.0.0.zip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M12 3v4m0 3v2m0 3v2"/></svg>Download ZIP</a>
     <a class="btn" href="#videos"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg>Watch the film</a>
   </div>
   <p class="req rv">Python 3.10+ · no dependencies · Windows, macOS, Linux</p>
@@ -208,12 +213,17 @@ footer a{color:var(--mut)}
 <section id="features"><div class="wrap">
   <div class="head rv"><div class="label">What it does</div><h2>A control room for your AI toolbox.</h2><p class="lead">It reads, it explains, it advises. It never installs or runs anything by itself.</p></div>
 
-  <div class="feat rv"><div class="fx"><img src="assets/shot-kit.webp" width="1440" height="900" loading="lazy" alt="The Agents and MCP kit: install and prompt buttons, tabs for tools, step by step and pairings, and a table of tools with stars, licence, status and a Get button."></div>
+  <div class="feat rv"><div class="fx"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/shot-kit.webp"><img src="assets/readme/03-kit-steps.gif" width="800" height="450" loading="lazy" alt="Inside a kit: the cursor marks which tools you already have and which are missing, then opens the step-by-step setup."></picture></div>
     <div class="over"><div class="label">Tool kits</div><h3>The right set for each goal — with the why.</h3><p class="lead">Agents, web design, back-end, video, security, RAG, CAD, monetising and more. Ranked by GitHub stars, explained in one line each.</p>
       <ul><li><b>Essential (3) or Complete (7)</b> — start small, grow when you need to.</li><li><b>Goes well with</b> — which tools pair best, and why.</li><li><b>One-click Get</b> — GitHub, ZIP, <span class="mono">git clone</span> or a prompt for your agent.</li></ul></div>
   </div>
 
-  <div class="feat rv"><div class="fx"><img src="assets/shot-trends.webp" width="1440" height="900" loading="lazy" alt="Trends view: the most-talked-about tools, sets used together, and repositories rising on GitHub."></div>
+  <div class="feat r rv"><div class="fx"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/readme/shot-council.webp"><img src="assets/readme/04-council.gif" width="800" height="450" loading="lazy" alt="The Council reading a project folder, building its passport and ranking the kits it needs."></picture></div>
+    <div class="over"><div class="label">Council</div><h3>Point it at a project. Get what it needs.</h3><p class="lead">It reads the folder (read-only), writes a passport — mission, stack, connections — and ranks the kits, skills, MCPs and CLIs the project needs.</p>
+      <ul><li><b>What you have and what's missing</b>, side by side.</li><li><b>A ready prompt</b> so your own agent can dig deeper — with your account, no API key.</li></ul></div>
+  </div>
+
+  <div class="feat rv"><div class="fx"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/shot-trends.webp"><img src="assets/readme/05-trends.gif" width="800" height="450" loading="lazy" alt="Trends view: the most-talked-about tools, sets used together, and repositories rising on GitHub."></picture></div>
     <div class="over"><div class="label">Trends</div><h3>What the community uses this week.</h3><p class="lead">Rising GitHub repos, Hacker News and Reddit — public sources, no keys. Every item opens a preview first, so you decide before you leave.</p>
       <ul><li><b>Most talked about</b> tools and the <b>pairs</b> that show up together.</li><li><b>Research prompt</b> for your agent on TikTok, Instagram and Facebook.</li></ul></div>
   </div>
@@ -234,7 +244,7 @@ footer a{color:var(--mut)}
 <section id="start"><div class="wrap">
   <div class="head rv"><div class="label">Get started</div><h2>Two minutes. One command.</h2></div>
   <div class="steps">
-    <div class="step rv"><div class="k">01 · RUN</div><h3>Clone and start</h3><p>Standard library only — nothing to install. The dashboard opens in your browser, and can be installed as an app.</p></div>
+    <div class="step rv"><div class="k">01 · RUN</div><h3>Download and start</h3><p><a href="https://github.com/ET5131620/reason-o1-vibecoding/archive/refs/tags/v1.0.0.zip">Get the ZIP</a>, unzip, double-click <span class="mono">ARRANCAR.bat</span> — or clone it below. Standard library only: nothing to install.</p></div>
     <div class="step rv"><div class="k">02 · SCAN</div><h3>See your map</h3><p>A short first-run setup: name (optional), folders, what it may read, the terms, a starter pack and free courses.</p></div>
     <div class="step rv"><div class="k">03 · BUILD</div><h3>Ask, pick, ship</h3><p>Open a kit, ask the Council about a project, or connect it to your agent over MCP.</p></div>
   </div>

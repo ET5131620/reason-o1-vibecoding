@@ -1,10 +1,87 @@
-# REASON O1 / VIBECODING
+<p align="center"><img src="docs/assets/readme/banner.png" alt="REASON O1 / VibeCoding — Não é o código. É a configuração." width="100%"></p>
 
-**Um mapa vivo do teu ecossistema de IA.** Vê o que tens instalado — Claude Code, Codex, Cursor, ChatGPT, Ollama, skills, MCPs, CLIs, modelos — e descobre o que falta a cada projeto.
+<h1 align="center">REASON O1 / VibeCoding</h1>
 
-Grátis e de código aberto. Um obrigado à comunidade e uma antevisão do **REASON ONE** *(coming soon)*.
+<p align="center"><b>Um mapa vivo do teu ecossistema de IA.</b><br>Vê tudo o que tens instalado no PC — Claude Code, Codex, Cursor, ChatGPT, Ollama, skills, servidores MCP, CLIs, modelos locais — e descobre o que falta a cada projeto, e porquê.</p>
 
-## O que faz
+<p align="center">
+  <a href="https://github.com/ET5131620/reason-o1-vibecoding/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/ET5131620/reason-o1-vibecoding?color=2f6bff&label=release"></a>
+  <a href="LICENSE"><img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-6ea8ff"></a>
+  <img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-cfe0ff">
+  <img alt="No dependencies" src="https://img.shields.io/badge/dependencies-0-8fd3ff">
+  <img alt="MCP server" src="https://img.shields.io/badge/MCP-12%20tools-b9c6dc">
+  <a href="https://github.com/ET5131620/reason-o1-vibecoding/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/ET5131620/reason-o1-vibecoding?style=flat&color=fff3e2"></a>
+</p>
+
+<h3 align="center">
+  <a href="https://github.com/ET5131620/reason-o1-vibecoding/archive/refs/tags/v1.0.0.zip">⬇ Descarregar a v1.0 (ZIP)</a> &nbsp;·&nbsp; <a href="https://et5131620.github.io/reason-o1-vibecoding/">Site e filme</a> &nbsp;·&nbsp; <a href="README.md">English</a>
+</h3>
+
+<p align="center">Grátis e de código aberto (MIT) · Português, English, Français, Español · Um obrigado à comunidade open source e uma antevisão do <b>REASON ONE</b>, que chega em meados de dezembro.</p>
+
+---
+
+## Porque foi criado
+
+A maior parte dos projetos com IA não falha por causa do código. Falha na **configuração**: ferramentas, modelos, skills e servidores MCP a mais, e ninguém te diz quais já tens, quais o projeto precisa e quais só gastam tokens. Instalas a coisa errada, o agente arranca sem contexto e uma tarde vai-se em configuração.
+
+O REASON O1 resolve esse primeiro passo. Corre no teu PC, lê o que lá está e diz-te, em palavras simples, o que serve a cada projeto, o que falta e porquê. **Primeiro a configuração, depois o código.**
+
+## Vantagens
+
+- 🔍 **Tudo num só sítio** — cada app de IA, skill, servidor MCP, CLI, modelo local e projeto git do teu PC, encontrados sozinhos.
+- 🧭 **Sabes o que falta a cada projeto** — o Conselho lê o projeto e lista os kits, skills, MCPs e CLIs de que precisa, com o que já tens e o que não tens.
+- 🧰 **18 kits prontos** — de agentes e web design a vídeo, segurança e dados. *Essencial* (3 ferramentas) para quem começa, *Completo* (7) para quem já sabe, ordenados pelas estrelas no GitHub, com o que cada ferramenta faz e porque está lá.
+- 💸 **Menos erros, menos tokens** — a ferramenta e o modelo certos para o trabalho, e o consumo de tokens por dia, projeto e modelo.
+- 🧑‍🏫 **Feito para aprender** — explicações animadas de LLM, MCP, CLI, skill, agente, API e RAG, e os cursos oficiais gratuitos.
+- 🤝 **Fala com o teu agente** — é também um servidor MCP: o Claude Code ou o Codex passam a conhecer a tua configuração. Sem chave de API, com a tua conta.
+- 🔒 **Privado e seguro** — corre em `127.0.0.1`, lê só nomes, contagens e datas, e **nunca instala nem corre nada sozinho**.
+- 🆓 **Grátis, MIT, sem dependências** — só a biblioteca padrão do Python. Descarregar, duplo clique, pronto.
+
+## Como funciona
+
+### 1 · Mapeia o teu PC
+
+Sempre que abre, varre a máquina e desenha o mapa: apps, skills, servidores MCP, CLIs, modelos, agentes e projetos.
+
+<p align="center"><img src="docs/assets/readme/01-inventory.gif" alt="A visão geral: tudo o que está instalado no PC" width="100%"></p>
+
+### 2 · Escolhe um kit para o tipo de trabalho
+
+18 kits, cada um com o conjunto Essencial e o Completo. O anel mostra quanto dele já tens.
+
+<p align="center"><img src="docs/assets/readme/02-kits.gif" alt="Escolher um dos 18 kits" width="100%"></p>
+
+### 3 · Vê o que tens, o que falta — e os passos
+
+Cada ferramenta diz o que faz, porque está no kit, as estrelas e a licença, e se **já a tens** ou se **falta**. Depois, um passo a passo para a configurar, com o teu sim em cada instalação.
+
+<p align="center"><img src="docs/assets/readme/03-kit-steps.gif" alt="Dentro de um kit: o que tens, o que falta e o passo a passo" width="100%"></p>
+
+### 4 · Pede ao Conselho que analise um projeto
+
+Indica a pasta do projeto. Ele lê-a (só leitura), faz o passaporte — missão, stack, ligações — e ordena os kits de que precisa.
+
+<p align="center"><img src="docs/assets/readme/04-council.gif" alt="O Conselho a analisar a pasta de um projeto" width="100%"></p>
+
+### 5 · Acompanha o que se está a usar agora
+
+Repositórios a subir no GitHub, discussões do Hacker News e do Reddit, e as ferramentas que aparecem juntas — de fontes públicas, sem chave.
+
+<p align="center"><img src="docs/assets/readme/05-trends.gif" alt="Tendências do GitHub, Hacker News e Reddit" width="100%"></p>
+
+> As imagens mostram a app em inglês; dentro dela escolhes o português no botão de idioma.
+
+## Capturas
+
+| | |
+|---|---|
+| <img src="docs/assets/readme/shot-inventory.webp" alt="Visão geral"><br><sub><b>Visão geral</b> — a tua configuração de IA de relance</sub> | <img src="docs/assets/readme/shot-kits.webp" alt="Kits"><br><sub><b>Kits</b> — 18 áreas, Essencial ou Completo</sub> |
+| <img src="docs/assets/readme/shot-kit.webp" alt="Um kit"><br><sub><b>Um kit</b> — tens / falta, estrelas, licença, obter</sub> | <img src="docs/assets/readme/shot-steps.webp" alt="Passo a passo"><br><sub><b>Passo a passo</b> — configura com o teu agente</sub> |
+| <img src="docs/assets/readme/shot-council.webp" alt="Conselho"><br><sub><b>Conselho</b> — o que o teu projeto precisa</sub> | <img src="docs/assets/readme/shot-trends.webp" alt="Tendências"><br><sub><b>Tendências</b> — o que está a subir agora</sub> |
+| <img src="docs/assets/readme/shot-learn.webp" alt="Aprender"><br><sub><b>Aprender</b> — os conceitos, animados</sub> | <a href="https://et5131620.github.io/reason-o1-vibecoding/"><img src="docs/assets/readme/banner.png" alt="Site"></a><br><sub><b>Site</b> — vê o filme de 70 segundos</sub> |
+
+## Tudo o que faz
 
 | | |
 |---|---|
@@ -22,6 +99,10 @@ Grátis e de código aberto. Um obrigado à comunidade e uma antevisão do **REA
 ## Começar
 
 Precisas do Python 3.10 ou mais recente. Não há nada para instalar: só a biblioteca padrão.
+
+**O mais simples:** [descarrega o ZIP](https://github.com/ET5131620/reason-o1-vibecoding/archive/refs/tags/v1.0.0.zip), descompacta e dá duplo clique em `ARRANCAR.bat` (Windows). No macOS ou Linux, abre um terminal na pasta e corre `python3 reason_o1.py`.
+
+**Pela linha de comandos:**
 
 ```bash
 python reason_o1.py

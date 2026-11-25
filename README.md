@@ -1,18 +1,85 @@
-# REASON O1 / VIBECODING
+<p align="center"><img src="docs/assets/readme/banner.png" alt="REASON O1 / VibeCoding — It's not the code. It's the setup." width="100%"></p>
 
-**A living map of your AI ecosystem.** See everything you have installed — Claude Code, Codex, Cursor, ChatGPT, Ollama, skills, MCP servers, CLIs, local models — and find out what each project is missing.
+<h1 align="center">REASON O1 / VibeCoding</h1>
 
-Free and open source (MIT). A thank-you to the open source community, and an early look at **REASON ONE**, which launches in mid-December.
+<p align="center"><b>A living map of your AI ecosystem.</b><br>See everything installed on your PC — Claude Code, Codex, Cursor, ChatGPT, Ollama, skills, MCP servers, CLIs, local models — and find out what each project is missing, and why.</p>
 
-[Website](https://et5131620.github.io/reason-o1-vibecoding/) · [Português](README.pt.md) · English, Português, Français and Español inside the app
+<p align="center">
+  <a href="https://github.com/ET5131620/reason-o1-vibecoding/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/ET5131620/reason-o1-vibecoding?color=2f6bff&label=release"></a>
+  <a href="LICENSE"><img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-6ea8ff"></a>
+  <img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-cfe0ff">
+  <img alt="No dependencies" src="https://img.shields.io/badge/dependencies-0-8fd3ff">
+  <img alt="MCP server" src="https://img.shields.io/badge/MCP-12%20tools-b9c6dc">
+  <a href="https://github.com/ET5131620/reason-o1-vibecoding/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/ET5131620/reason-o1-vibecoding?style=flat&color=fff3e2"></a>
+</p>
+
+<h3 align="center">
+  <a href="https://github.com/ET5131620/reason-o1-vibecoding/archive/refs/tags/v1.0.0.zip">⬇ Download v1.0 (ZIP)</a> &nbsp;·&nbsp; <a href="https://et5131620.github.io/reason-o1-vibecoding/">Website &amp; film</a> &nbsp;·&nbsp; <a href="README.pt.md">Português</a>
+</h3>
+
+<p align="center">Free and open source (MIT) · English, Português, Français, Español · A thank-you to the open source community and an early look at <b>REASON ONE</b>, launching mid-December.</p>
 
 ---
 
-## Why
+## Why it was created
 
-Most of the time lost in vibe coding isn't spent writing code. It goes on not knowing what you already have, installing the wrong tool, or burning tokens on a model that can't do the job. REASON O1 runs on your PC, reads what is there, and tells you — in plain words — what fits each project and why.
+Most AI projects don't fail because of the code. They fail at the **setup**: too many tools, models, skills and MCP servers, and nobody tells you which ones you already have, which ones the project needs, and which ones just burn tokens. You install the wrong thing, the agent starts without context, and an afternoon goes on configuration.
 
-## What it does
+REASON O1 fixes that first step. It runs on your PC, reads what is there, and tells you — in plain words — what fits each project, what is missing and why. **Set up first, then code.**
+
+## Advantages
+
+- 🔍 **Everything in one place** — every AI app, skill, MCP server, CLI, local model and git project on your PC, found automatically.
+- 🧭 **Know what each project is missing** — the Council reads a project and lists the kits, skills, MCPs and CLIs it needs, marking what you have and what you don't.
+- 🧰 **18 ready-made kits** — from agents and web design to video, security and data. *Essential* (3 tools) for beginners, *Complete* (7) for experts, ranked by GitHub stars, with what each tool does and why it's there.
+- 💸 **Fewer errors, fewer tokens** — the right tool and model for the job, plus token usage by day, project and model.
+- 🧑‍🏫 **Made for learning** — animated explanations of LLM, MCP, CLI, skill, agent, API and RAG, and the free official courses.
+- 🤝 **Talks to your agent** — it is also an MCP server, so Claude Code or Codex know your setup. No API key, your own account.
+- 🔒 **Private and safe** — runs on `127.0.0.1`, reads only names, counts and dates, and **never installs or runs anything by itself**.
+- 🆓 **Free, MIT, zero dependencies** — Python standard library only. Download, double-click, done.
+
+## How it works
+
+### 1 · It maps your PC
+
+Every time it opens it scans your machine and draws the map: apps, skills, MCP servers, CLIs, models, agents and projects.
+
+<p align="center"><img src="docs/assets/readme/01-inventory.gif" alt="The overview: everything installed on the PC, found automatically" width="100%"></p>
+
+### 2 · Pick a kit for the kind of work
+
+18 kits, each with an Essential and a Complete set. The ring shows how much of it you already have.
+
+<p align="center"><img src="docs/assets/readme/02-kits.gif" alt="Choosing a kit from the 18 available" width="100%"></p>
+
+### 3 · See what you have, what's missing — and the steps
+
+Every tool says what it does, why it's in the kit, its stars and licence, and whether **you have it** or it's **missing**. Then a step-by-step to set it up, with your yes at every install.
+
+<p align="center"><img src="docs/assets/readme/03-kit-steps.gif" alt="Inside a kit: what you have, what is missing and the step-by-step" width="100%"></p>
+
+### 4 · Ask the Council about a project
+
+Point it at a project folder. It reads it (read-only), builds a passport — mission, stack, connections — and ranks the kits it needs.
+
+<p align="center"><img src="docs/assets/readme/04-council.gif" alt="The Council analysing a project folder" width="100%"></p>
+
+### 5 · Follow what people are using now
+
+Rising GitHub repos, Hacker News and Reddit discussions, and the tools that show up together — from public sources, no key.
+
+<p align="center"><img src="docs/assets/readme/05-trends.gif" alt="Trends from GitHub, Hacker News and Reddit" width="100%"></p>
+
+## Screenshots
+
+| | |
+|---|---|
+| <img src="docs/assets/readme/shot-inventory.webp" alt="Overview"><br><sub><b>Overview</b> — your whole AI setup at a glance</sub> | <img src="docs/assets/readme/shot-kits.webp" alt="Kits"><br><sub><b>Kits</b> — 18 areas, Essential or Complete</sub> |
+| <img src="docs/assets/readme/shot-kit.webp" alt="A kit"><br><sub><b>A kit</b> — have it / missing, stars, licence, Get</sub> | <img src="docs/assets/readme/shot-steps.webp" alt="Step by step"><br><sub><b>Step by step</b> — set it up with your agent</sub> |
+| <img src="docs/assets/readme/shot-council.webp" alt="Council"><br><sub><b>Council</b> — what your project needs</sub> | <img src="docs/assets/readme/shot-trends.webp" alt="Trends"><br><sub><b>Trends</b> — what's rising right now</sub> |
+| <img src="docs/assets/readme/shot-learn.webp" alt="Learn"><br><sub><b>Learn</b> — the concepts, animated</sub> | <a href="https://et5131620.github.io/reason-o1-vibecoding/"><img src="docs/assets/readme/banner.png" alt="Website"></a><br><sub><b>Website</b> — watch the 70-second film</sub> |
+
+## Everything it does
 
 | | |
 |---|---|
@@ -31,6 +98,10 @@ Most of the time lost in vibe coding isn't spent writing code. It goes on not kn
 ## Get started
 
 You need Python 3.10 or newer. Nothing else to install — it uses only the standard library.
+
+**Easiest:** [download the ZIP](https://github.com/ET5131620/reason-o1-vibecoding/archive/refs/tags/v1.0.0.zip), unzip it and double-click `ARRANCAR.bat` (Windows). On macOS or Linux, open a terminal in the folder and run `python3 reason_o1.py`.
+
+**With git:**
 
 ```bash
 git clone https://github.com/ET5131620/reason-o1-vibecoding.git
